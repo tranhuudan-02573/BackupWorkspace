@@ -1,0 +1,12 @@
+.noidung{
+    width: 234px;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid gray;
+}
+.noidung img{
+    height: 350px;
+}
+*{
+    margin: 0;padding: 0;box-sizing: border-box;
+}

@@ -1,0 +1,25 @@
+<div class="mt-4">
+    {{!-- mac dinh cua form la GET
+    nhận dữ liệu từ server về client hoặc từ máy chủ về máy người dùng
+    đính trên url query parameters
+    --}}
+
+    {{!-- <form method="GET" action="/news"> --}}
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="search-input">tu khoa</label>
+            <input placeholder="nhap tu khoa.." name="q" type="text" class="form-control" id="search-input">
+        </div>
+        <div class="form-group">
+            <label for="gender-input">tu khoa</label>
+            <select name="gender" class="form-control" id="gender-input">
+                <option value="">chon gioi tinh</option>
+                <option value="male">nam</option>
+                <option value="female">nu</option>
+            </select>
+
+        </div>
+        <button class="btn btn-primary" type="submit">tim kiem</button>
+    </form>
+
+</div>

@@ -1,0 +1,13 @@
+:root{
+    --mauvang: rgba(204, 204, 17, 0.534);
+    --text_size1: 11px;
+    --maunen: rgb(180, 180, 166);
+    --font_tieude: "segoe ui light";
+}
+body{
+    background-color: var(--mauvang);
+}
+h2{
+    font-size: var(--text_size1);
+    font-family: var(--font_tieude);
+}

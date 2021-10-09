@@ -1,0 +1,264 @@
+package MyPaint;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class DrawingPanel extends JPanel {
+	StatusBar statusBar;
+	String shapeType = "";
+	Color color, colorBackground;
+	AShape lastShape;
+	List<AShape> shapes;
+	int x;
+	int y;
+	boolean selected = false;
+	MouseSelect ms;
+	private final int DELAY = 1;
+	Timer timer;
+	int stroke;
+	boolean moved;
+	boolean started, command;
+
+	public DrawingPanel(StatusBar statusBar) {
+		ms = new MouseSelect(10, 10, 10, 10);
+
+		timer = new Timer(DELAY, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ms.move();
+				repaint();
+			}
+		});
+		this.statusBar = statusBar;
+		shapes = new ArrayList<AShape>();
+		ChangeListener change = new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+			}
+		};
+
+		MouseAdapter mouse = new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				if (moved) {
+					moved = false;
+				} else
+
+					switch (shapeType) {
+					case "Move":
+						System.out.println(command);
+						for (int i = 0; i < shapes.size(); i++) {
+							if (shapes.get(i).contains(e.getPoint())) {
+								moved = true;
+							} else
+								moved = false;
+						}
+
+						break;
+					case "Circle":
+						lastShape = new Circle(e.getX(), e.getY(), color,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+
+						break;
+					case "Line":
+						lastShape = new Line(e.getX(), e.getY(), color,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "Rectangle":
+						lastShape = new Rectangle(e.getX(), e.getY(), color,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "IoscelesTriangle":
+						lastShape = new IsoscelesTriangle(e.getX(), e.getY(), color,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "SquareTriangle":
+						lastShape = new SquareTriangle(e.getX(), e.getY(), color,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "Square":
+						lastShape = new Square(e.getX(), e.getY(), color,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "Ellipse":
+						lastShape = new Ellipse(e.getX(), e.getY(), color,
+								new BasicStroke(10, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "Pen":
+						lastShape = new Pen(e.getX(), e.getY(), color,
+								new BasicStroke(10, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+						shapes.add(lastShape);
+						started = true;
+						break;
+					case "Eraser":
+						lastShape = new Pen(e.getX(), e.getY(), colorBackground,
+								new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+
+						shapes.add(lastShape);
+						started = true;
+						break;
+
+					}
+				repaint();
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				started = false;
+				if (command)
+					lastShape.setCommand(statusBar);
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				switch (shapeType) {
+				case "Fill", "Color Shape":
+					fillColor(e.getPoint());
+					break;
+				case "Select":
+					select(e.getPoint());
+					break;
+				case "Delete":
+					delete(e.getPoint());
+					break;
+				case "Select all":
+					selectAll();
+					break;
+				}
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+				statusBar.setPoint(x, y);
+			}
+
+		};
+
+		addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) {
+
+				if (moved) {
+					command = true;
+					lastShape.move(e.getPoint());
+				}
+				if (started)
+					lastShape.setSecondPoint(e.getX(), e.getY());
+				repaint();
+			}
+		});
+
+		KeyAction key = new KeyAction(this);
+		addKeyListener(key);
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		setBackground(this.colorBackground);
+		Graphics2D g2D = (Graphics2D) g;
+		for (AShape shape : shapes) {
+			if (shape.fill) {
+				shape.fill(g2D);
+			}
+			else {
+				shape.draw(g2D);
+			
+			}
+			if (shape.select) {
+//			g.drawRect(ms.x, ms.y, ms.width, ms.height);
+				shape.select(g2D);
+			}
+		}
+
+	}
+
+	// tô màu cho hình
+	public void fillColor(Point p) {
+		for (int i = 0; i < shapes.size(); i++) {
+			if (shapes.get(i).contains(p)) {
+				shapes.get(i).fill = true;
+				shapes.get(i).color = this.color;
+				break;
+			}
+		}
+
+	}
+
+	public void select(Point p) {
+		for (int i = 0; i < shapes.size(); i++) {
+			if (shapes.get(i).contains(p)) { /////////////////////////////////////////////
+				selected = true;
+				shapes.get(i).select = true;
+				ToolBar toolBar = new ToolBar(this, statusBar, null);
+				toolBar.btn[0].setEnabled(true);
+				break;
+			} else
+				shapes.get(i).select = false;
+				selected = false;
+		}
+	}
+
+	public void setShapeType(String type) {
+		this.shapeType = type;
+		this.statusBar.setMessage("Bạn đã chọn " + type);
+	}
+
+	public void delete(Point p) {
+		for (int i = 0; i < shapes.size(); i++) {
+			if (shapes.get(i).lyingOn(p)) {
+				shapes.remove(i);
+				break;
+			}
+		}
+	}
+
+	public void selectAll() {
+		for (int i = 0; i < shapes.size(); i++) {
+			shapes.get(i);
+		}
+	}
+}

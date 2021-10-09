@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Animated Menu button with list</title> -->
+    <link rel="stylesheet" href="06.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  </head>
+  <body>
+    <div class="menu-container">
+      <div class="button">
+Menu
+        <span class="fas fa-bars"></span>
+      </div>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Blogs</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">Feedback</a></li>
+</ul>
+</div>
+<script>
+      $(document).ready(function(){
+        $('.button').click(function(){
+          if($(this).hasClass('expand')){
+            $('ul').slideUp(function(){
+              $('.button').removeClass('expand');
+              $('.fas').removeClass('expand')
+            });
+          }else{
+            $(this).addClass('expand');
+            setTimeout(function(){
+              $('.fas').addClass('expand');
+              $('ul').stop().slideDown();
+            },200);
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>

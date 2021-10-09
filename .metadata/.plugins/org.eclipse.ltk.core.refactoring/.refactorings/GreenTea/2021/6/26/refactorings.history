@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;JavaEnhance/btTuLuyen/MyPaint&apos;&#x0D;&#x0A;- Original project: &apos;GreenTea&apos;&#x0D;&#x0A;- Destination element: &apos;JavaEnhance/btTuLuyen/MyPaint&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     pain.pngSaveFilter.java&#x0D;&#x0A;     pain.txtSaveFilter.java&#x0D;&#x0A;     pain.WriteImage.java&#x0D;&#x0A;     pain.OpenFile.java" description="Copy compilation units" destination="=JavaEnhance/btTuLuyen&lt;MyPaint" element1="/src&lt;pain{pngSaveFilter.java" element2="/src&lt;pain{txtSaveFilter.java" element3="/src&lt;pain{WriteImage.java" element4="/src&lt;pain{OpenFile.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1624567826842" units="4" version="1.0"/>
+</session>

@@ -1,0 +1,24 @@
+.khung{
+    height: 40px;
+    font-size: 25px;
+    color: rgb(114, 107, 107);
+    font-family: segoe ui;
+    width: 200px;
+    background-color: greenyellow;
+    margin: auto;
+    margin-top: 50px;
+    overflow: hidden;
+
+}
+.khung .chu{
+    /* position: relative;
+    top: 50px; */
+    padding-top: 50px;
+    transition: 0.4s;
+    padding-left: 25px;
+    
+}
+.khung:hover .chu{
+    padding-top: 3px;
+    
+}

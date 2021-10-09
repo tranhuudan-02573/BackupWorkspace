@@ -1,0 +1,19 @@
+package Calculator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ActionCalculator {
+
+	public static void main(String[] args) {
+		System.out.println(ActionCalculator.createOptimalStr("27+1*49+3").toString());
+		System.out.println(ActionCalculator.result("27+1*49+3"));// kết quả =79
+//		ActionCalculator.getLocalMark("27+3*44");
+//		System.out.println(ActionCalculator.getLocalMark("*44"));
+//		System.out.println(ActionCalculator.checkPlusMinus(1, "49"));
+	}
+
+
+}

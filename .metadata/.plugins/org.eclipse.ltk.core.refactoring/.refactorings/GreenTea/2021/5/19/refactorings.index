@@ -1,0 +1,14 @@
+1620022213537	Delete element
+1620034218064	Delete element
+1620042108624	Rename field 'isRed'
+1620042112694	Rename field 'rd'
+1620279221580	Extract method 'handlePauseGame'
+1620279272163	Rename method 'nextGame'
+1620370733658	Delete element
+1620373279027	Rename field 'DrawLineBtn'
+1620373642505	Rename type 'DrawLine'
+1620373665052	Rename type 'Line'
+1620373888653	Rename local variable 'g2d'
+1620374970028	Rename type 'DrawLine'
+1620374978691	Rename compilation unit 'DrawLine2.java'
+1620376935811	Rename type 'SwingPaint'

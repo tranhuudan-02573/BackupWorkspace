@@ -1,0 +1,111 @@
+package Array;
+
+public class dsa {
+	public static void main(String[] args) {
+		
+	
+	void nhap(int a[MAX][MAX],int m,int n)
+	   {
+	   int i,j;
+	   for(i=0;i<m;i++)
+	       {
+	       for(j=0;j<n;j++)
+	           {
+	           printf("Nhap vao a[%d][%d]",i+1,j+1);
+	           scanf("%d",&a[i][j]);
+	           }
+	       }
+	   }
+
+	/* ham xuat ma tran */
+	void xuat(int a[MAX][MAX],int m,int n)
+	     {
+	     int i,j;
+	     for(i=0;i<m;i++)
+	         {
+	         for(j=0;j<n;j++)
+	             {
+	             printf("%d\t",a[i][j]);
+	             }
+	         printf("\n");
+	         }
+	     }
+
+	/* ham kiem tra tinh doi xung */
+	void kiemtra(int a[MAX][MAX],int m,int n)
+	  {
+	  int i,j;
+	  int flag=1;
+	  for(i=0;i<m;i++)
+	      {
+	      for(j=0;j<n;j++)
+	          {
+	          if(a[i][j]!=a[j][i])
+	              flag=0;break;
+	          }
+	      }
+	  if(flag==0)
+	      printf("KHONG DOI XUNG\n");
+	  else
+	      printf("DOI XUNG\n");
+	  }
+
+	/* ham dem so boi 5 cua a */
+	int demboi5(int a[MAX][MAX],int m,int n)
+	   {
+	   int i,j;
+	   int dem=0;
+	   for(i=0;i<m;i++)
+	       {
+	       for(j=0;j<n;j++)
+	           {
+	       if(a[i][j]%5==0)
+	               dem=dem+1;
+	           }
+	       }
+	   return dem;
+	   }
+
+	/* sap xep tren hang giam dan tu trai qua phai */
+	void sapxephang(int a[MAX][MAX],int m,int n)
+	   {
+	   int i,j,k,tg;
+	   for(i=0;i<n;i++)
+	       {
+	       for(j=0;j<n-1;j++)
+	           {
+	           for(k=j+1;k<n;k++)
+	               {
+	               if(a[i][j]<a[i][k])
+	                   {
+	                   tg=a[i][j];
+	                   a[i][j]=a[i][k];
+	                   a[i][k]=tg;
+	                   }
+	               }
+	           }
+	       }
+	   }
+
+	/* chuong trinh chinh */
+	void main()
+	{
+	clrscr();
+	int m,n;
+	int a[MAX][MAX];
+	printf("Vui long nhap vao so hang");
+	scanf("%d",&m);
+	printf("Vui long nhap vao so cot");
+	scanf("%d",&n);
+	nhap(a,m,n);
+	printf("MA TRAN VUA NHAP\n");
+	xuat(a,m,n);
+	kiemtra(a,m,n);
+	printf("SO BOI 5 TREN A LA:%d\n",demboi5(a,m,n));
+	printf("A KHI SAP XEP GIAM DAN TREN HANG\n");
+	sapxephang(a,m,n);
+	xuat(a,m,n);
+	getch();
+	}
+}
+}

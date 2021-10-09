@@ -1,0 +1,30 @@
+
+
+
+._13cot{
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+._13cot ._1cot{
+
+    width: 75px;
+    height: 100px;
+    text-align: center;
+    font-size: 12px;
+    font-family: segoe ui light;
+
+}
+._13cot ._1cot img{
+    width: 100%;
+    border-radius: 4px;
+}
+._13cot ._1cot img:hover{
+    /* border-radius: 50%; */
+    border: 2px solid blue;
+}
+._13cot ._1cot a.ten{
+    text-decoration: none;
+    color: #183bac;
+}

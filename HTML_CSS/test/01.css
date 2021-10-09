@@ -1,0 +1,213 @@
+*{margin: 0%;padding: 0;box-sizing: border-box;}
+.tinto, .tinto1{
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+   
+    padding: 10px;
+}
+.xam{
+    width: 380px;
+    height: 280px;
+    background: rgba(0, 0, 0, 0.32);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    transition: 0.4s;
+    padding: 10px;
+    opacity: 1;
+}
+.gradient{
+   
+    width: 380px;
+    height: 280px;
+background-image: -webkit-linear-gradient(45deg, #5DCD6A 0%, #D38253 40%, #4B4A4A 100%) ;
+position: absolute;
+top: 10px;
+left: 10px;
+z-index: 2;
+opacity: 0;
+transition: 0.4s;
+
+}
+.hinhvuong{
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    z-index: 3;
+    top: 9%;
+    left: 9%;
+    transition: 0.2s;
+    border: 2px solid white;
+    transform: scale(0);
+    opacity: 0;
+    transition-delay: 0.2s;
+}
+.chuto{
+    font-size: 31px;
+    font-family: segoe ui light;
+    z-index: 4;
+    color: white;
+    text-align: center;
+    width: 100%;
+    top: 44%;
+    left: 0%;
+    transition: 0.4s;
+   position: absolute;
+}
+.tinto1 .chunho{
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    color: white;
+    z-index: 99;
+    width: 70%;
+    font-family: segoe ui light;
+    text-transform: uppercase;
+    text-align: center;
+    transition: 0.2s;
+    opacity: 0;
+    transform: scale(0);
+}
+.tinto1:hover .chuto{
+    transform: translateY(-30px);
+}
+.tinto1:hover .chunho{
+    transform: scale(1);
+    opacity: 1;
+}
+.tinto1:hover .hinhvuong{
+transform: scale(1);
+opacity: 1;
+}
+.tinto1:hover .xam{
+    opacity: 0;
+}
+.tinto1:hover .gradient{
+    opacity: 0.6;
+}
+.container, .noidungthem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+}
+.container{
+    margin-top: 10px;
+}
+
+img{
+     
+    
+   display: block;
+    
+    width: 100%;
+    height: 100%;
+    
+    
+  
+     
+}
+.anh{
+    width: 400px;
+    height: 300px;
+    transform: scale(1.5);
+    transition: 0.2s;
+    
+}
+.box{
+    width: 100%;
+height: 100%;
+        overflow: hidden;
+}
+.nenxanh{
+    width: 380px;
+    height: 280px;
+    background: rgba(173, 216, 230, 0.42);
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    z-index: 1;
+    transition: 0.4s;
+    opacity: 0;
+}
+.thanh1, .thanh2{
+    width: 300px;
+    height: 2px;
+    background: white;
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    z-index: 3;
+transform: rotate(0deg);
+    transition: 0.4s;
+    transition-delay: 0.2s;
+}
+.chuto1 {
+    position: absolute;
+    z-index: 4;
+    top: 70px;
+    left: 120px;
+    text-align: center;
+    color: white;
+    font-family: segoe ui light;
+    font-size: 32px;
+    transition: 0.2s;
+    
+
+}
+.chunho1{
+    position: absolute;
+    top: 65%;
+    left: 15%;
+    color: white;
+    z-index: 99;
+    width: 70%;
+    font-family: segoe ui light;
+    text-transform: uppercase;
+    text-align: center;
+    transition: 0.4s;
+    opacity: 0;
+}
+
+    
+ 
+
+.tinto:hover .anh {
+    transform: scale(1);
+}
+.tinto:hover .nenxanh {
+   opacity: 1;
+}
+.tinto:hover .thanh1 {
+transform: rotate(45deg);
+}
+.tinto:hover .thanh2 {
+transform: rotate(-45deg);
+}
+.tinto:hover .chuto1{
+transform: translateY(20px);
+}
+.tinto:hover .chunho1{
+transform: translateY(-15px);
+opacity: 1;
+}
+
+.loadthem{
+    overflow: hidden;
+    clear: both;
+    margin-top: 10px;
+    
+    text-align: center;
+}
+.nutload{
+    background: lightblue;
+border: none;
+padding: 13px;
+cursor: pointer;
+font-weight: 500;
+width: 377px;
+margin-bottom: 20px;
+}

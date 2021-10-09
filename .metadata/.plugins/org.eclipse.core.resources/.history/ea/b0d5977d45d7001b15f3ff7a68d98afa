@@ -1,0 +1,151 @@
+package MyPaint;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+
+public class ToolBar extends JPanel {
+	DrawingPanel drawingPanel;
+	Color color;
+	StatusBar statusBar;
+	MainPaint mainPaint;
+	String[] s = { "Add tab", "Color", "Clear", "Delete", "Fill", "Clear All", "Eraser", "Move" };
+	JButton[] btn = new JButton[8];
+	JToggleButton selectButton;
+	String com;
+
+	public ToolBar(DrawingPanel drawingPanel, StatusBar statusBar, MainPaint mainPaint) {
+		this.mainPaint = mainPaint;
+		this.statusBar = statusBar;
+
+		this.drawingPanel = drawingPanel;
+		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(),
+				new MatteBorder(2, 2, 0, 2, Color.black)));
+		ActionListener action = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				com = e.getActionCommand();
+				drawingPanel.setShapeType(com);
+				for (int i = 0; i < btn.length; i++) {
+					if (e.getActionCommand() == s[i])
+						drawingPanel.command = false;
+				}
+				if (e.getActionCommand() == "Color") {
+					JColorChooser colorChooser = new JColorChooser();
+					color = colorChooser.showDialog(null, "pick a color", Color.black);
+					drawingPanel.color = color;
+					statusBar.setColor(color);
+					drawingPanel.selected = false;
+					statusBar.command2.setText("Comment ở đây ... nhấn Enter để send");
+				}
+				if (e.getActionCommand() == "Add tab") {
+					String name = JOptionPane.showInputDialog("Name is your new tab ?_? ");
+					DrawingPanel drawingPanel1 = new DrawingPanel(new StatusBar());
+					mainPaint.tabPane.add(name, drawingPanel1);
+					createPanel(drawingPanel1);
+					drawingPanel.selected = false;
+					statusBar.command2.setText("Comment ở đây ... nhấn Enter để send");
+				}
+				if (e.getActionCommand() == "Delete")
+					statusBar.command2.setText("nhấp chuột lên trên hình để xóa hình đó");
+				if (e.getActionCommand() == "Fill")
+					statusBar.command2.setText("nhấp chuột vào trong hình để xóa hình đó");
+				if (e.getActionCommand() == "Eraser")
+					statusBar.command2.setText("nhấn giữ chuột và di chuyển để xóa phần đó");
+				if (e.getActionCommand() == "Move")
+					statusBar.command2
+							.setText("nhấp chuột vào trong hình đó giữ và di chuyển để đến được nơi mong muốn");
+				if (e.getActionCommand() == "Clear") {
+					if (drawingPanel.shapes.size() > 0)
+						drawingPanel.shapes.remove(drawingPanel.shapes.size() - 1);
+					else
+						return;
+					drawingPanel.repaint();
+					drawingPanel.selected = false;
+					statusBar.command2.setText("nhấp button này để xóa lần lượt các hình trở về trước");
+				}
+				if (e.getActionCommand() == "Clear All") {
+					drawingPanel.shapes.removeAll(drawingPanel.shapes);
+					drawingPanel.repaint();
+					drawingPanel.selected = false;
+					statusBar.command2.setText("nhấp button này để xóa hết các hình");
+				}
+
+				if (selectButton.isSelected()) {
+					drawingPanel.timer.start();
+					drawingPanel.repaint();
+					btn[7].setEnabled(true);
+					btn[4].setEnabled(true);
+					btn[3].setEnabled(true);
+					btn[5].setEnabled(false);
+					btn[2].setEnabled(false);
+					btn[6].setEnabled(false);
+					btn[0].setEnabled(false);
+
+					statusBar.command2.setText("nhấp chuột lên trên hình để select");
+				} else {
+					for (AShape shape : drawingPanel.shapes) {
+						shape.select = false;
+
+					}
+					drawingPanel.timer.stop();
+					drawingPanel.repaint();
+					btn[7].setEnabled(false);
+					btn[4].setEnabled(false);
+					btn[3].setEnabled(false);
+					btn[5].setEnabled(true);
+					btn[2].setEnabled(true);
+					btn[6].setEnabled(true);
+					btn[0].setEnabled(true);
+					statusBar.command2.setText("Comment ở đây ... nhấn Enter để send");
+				}
+				if (e.getActionCommand() == "Pen" || e.getActionCommand() == "Line" || e.getActionCommand() == "Circle"
+						|| e.getActionCommand() == "Rectangle" || e.getActionCommand() == "Triangle"
+						|| e.getActionCommand() == "Eraser" || e.getActionCommand() == "Fill") {
+					drawingPanel.selected = false;
+					drawingPanel.timer.stop();
+					drawingPanel.repaint();
+				}
+
+			}
+		};
+		selectButton = new JToggleButton("Select");
+		selectButton.addActionListener(action);
+		selectButton.setActionCommand("Select");
+		selectButton.setBackground(Color.white);
+		selectButton.setFocusable(false);
+		selectButton.setMargin(new Insets(5, 20, 5, 20));
+
+		for (int i = 0; i < btn.length; i++) {
+
+			btn[i] = new JButton(s[i]);
+			btn[i].addActionListener(action);
+			btn[i].setActionCommand(s[i]);
+			btn[i].setBackground(Color.white);
+			btn[i].setFocusable(false);
+			btn[i].setMargin(new Insets(5, 20, 5, 20));
+			add(btn[i]);
+		}
+		btn[7].setEnabled(false);
+		btn[4].setEnabled(false);
+		btn[3].setEnabled(false);
+		Slider slider = new Slider(drawingPanel, statusBar);
+		add(selectButton);
+		add(slider);
+
+		setVisible(true);
+	}
+
+	public void createPanel(JPanel p) {
+		this.drawingPanel = (DrawingPanel) p;
+
+	}
+
+}

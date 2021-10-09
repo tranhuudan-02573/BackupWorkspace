@@ -1,0 +1,76 @@
+ul.menungang{
+    /* display: flex; */
+    list-style: none;
+    margin-left: auto;
+
+    margin-right: auto;
+    width: 1500px;
+    text-align: center;
+    
+
+
+}
+div.menutren{
+    background-color: #2FA1B3;
+    height: 30px;
+   
+
+
+}
+ul.menungang li{
+    display:inline;
+}
+ul.menungang li a{
+    color: white;
+    text-decoration: none;
+    font-family: segoe ui light;
+    /*  text-transform: uppercase--> biến thành chữ in hoa */
+    text-transform: uppercase;
+    font-size: 13px;
+    /* display:block; */
+    /* padding:6px; */
+    /* padding:6px(top) 6px(right) 6px(bottom)  6px(left)*/
+    padding-top: 6px;
+    padding-right: 5px;
+    padding-bottom: 6px;
+    padding-left: 5px;
+    transition: 0.5s;
+    display: inline-block;
+}
+/* hover là di chuột */
+ul.menungang li a:hover{
+    background-color: rgb(8, 54, 92);
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+}
+.duoi{
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 14px ;
+}
+.duoi a.khoinho{
+    width: 200px;
+    display: flex;
+    height: 30px;
+    color: #414141;
+    font-family: segoe ui light;
+    font-size: 13px;
+    text-decoration: none;
+
+}
+.duoi a.khoinho img.trai{
+    width: 16px;
+    margin-right: 5px;
+    height: 16px;
+}
+.duoi a.khoinho .phai{
+    width: 170px;
+
+}
+
+
+
+
+

@@ -1,0 +1,82 @@
+package MyPaint;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class DrawShape extends JPanel {
+	DrawingPanel drawingPanel;
+	StatusBar statusBar;
+	String[] s = { "Pen", "Line", "Circle", "Square", "Rectangle", "IoscelesTriangle", "SquareTriangle", "Ellipse" };
+	JButton[] btn = new JButton[8];
+	ToolBar toolBar;
+
+	public DrawShape(DrawingPanel drawingPanel, StatusBar statusBar, ToolBar toolBar) {
+		setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
+		setVisible(true);
+		// TODO Auto-generated constructor stub
+		this.statusBar = statusBar;
+		this.drawingPanel = drawingPanel;
+		this.setLayout(new GridLayout(0, 1));
+		this.toolBar = toolBar;
+		this.statusBar = statusBar;
+		this.drawingPanel = drawingPanel;
+
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String com = e.getActionCommand();
+				drawingPanel.setShapeType(com);
+				for (int i = 0; i < btn.length; i++) {
+					statusBar.command2.setText("giữ và di chuyển chuột để vẽ");
+					if (e.getActionCommand() == s[i])
+						drawingPanel.command = true;
+					for (AShape shape : drawingPanel.shapes) {
+						shape.select = false;
+					}
+
+				}
+				if (e.getActionCommand() == "Pen" || e.getActionCommand() == "Line" || e.getActionCommand() == "Circle"
+						|| e.getActionCommand() == "Rectangle" || e.getActionCommand() == "IoscelesTriangle"
+						|| e.getActionCommand() == "Eraser" || e.getActionCommand() == "Fill") {
+					drawingPanel.selected = false;
+					drawingPanel.timer.stop();
+					drawingPanel.repaint();
+				}
+				for (int i = 0; i < btn.length; i++) {
+					if (e.getActionCommand() == s[i]) {
+						btn[i].setForeground(Color.red);
+						for (int j = 0; j < toolBar.btn.length; j++) {
+							toolBar.btn[j].setForeground(Color.black);
+						}
+
+					}
+					if (e.getActionCommand() != s[i]) {
+						btn[i].setForeground(Color.BLACK);
+					}
+
+				}
+
+			}
+		};
+
+		for (int i = 0; i < btn.length; i++) {
+			btn[i] = new JButton(s[i]);
+			btn[i].addActionListener(action);
+			btn[i].setActionCommand(s[i]);
+			btn[i].setBackground(Color.white);
+			btn[i].setFocusable(false);
+			drawingPanel.command = true;
+			add(btn[i]);
+		}
+
+	}
+
+}

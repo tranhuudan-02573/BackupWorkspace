@@ -1,0 +1,49 @@
+*{margin: 0; padding: 0;}
+
+.ndmotkhoi {
+    border: 1px solid #c2c2c2;
+    padding: 10px;
+    background: #ffffffad;
+    color: #796363;
+    
+}
+
+.motkhoi h3 {
+    background: #377fea;
+    color: white;
+    padding: 5px 10px;
+    
+}
+
+.hieuung {
+    width: 400px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.container {
+    text-align: center;
+}
+
+body {
+    background: url(https://lh3.googleusercontent.com/proxy/XC58_SSTKHjILLmioRYNdl1AWRjoZY_GyRrzPETkXylE2kBImLKzfYCzd17nCnr9QH9iWO051wX2eRi3oeLoYn8I2DJo4-3DfvyipI1Z);
+    font-family: segoe ui;
+}
+.tieude{
+    position: relative;
+}
+.motkhoi .fa{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    top: 177px;
+    left: 1700px;
+    
+}
+.motkhoi .xanh{
+    background: rgb(28, 128, 161);
+}
+
+
+
+

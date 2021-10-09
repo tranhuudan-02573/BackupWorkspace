@@ -1,0 +1,78 @@
+package FlipPokeGame;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
+
+public class MainGame {
+	static JFrame frame;
+
+	public static void main(String[] args) {
+		frame = new JFrame();
+		FlipPoke3 game = new FlipPoke3(0, 60, 60);
+		frame.add(game);
+		frame.setTitle("Flip Poke Game");
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				FlipPoke3.setPaused(true);
+				FlipPoke3.getTimerSecondBar().stop();
+				FlipPoke3.getTimerTictac().stop();
+				FlipPoke3.getButtonPause().setText("Cont");
+				int exit = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình không?", null,
+						JOptionPane.YES_NO_OPTION);
+
+				if (exit == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+
+			}
+		});
+		frame.setVisible(true);
+//			showMatrix();
+	}
+
+	public static void newGame() {
+		frame.dispose();
+		new FlipPoke(0, 60, 60);
+	}
+
+	// reset game
+	public static void resGame() {
+		if (FlipPoke3.getLevel() == 0) {
+			// neu la man dau tien thì new game luôn
+			newGame();
+		} else {
+			// nếu ko phải là màn đầu tiên thì điểm và thời gian đang có sẽ bị chia đôi
+			frame.dispose();
+			// hình ảnh sẽ được up lại và xáo lại hết
+			new FlipPoke(FlipPoke3.getLevel(), Integer.parseInt(FlipPoke3.getButtonScore().getText()) / 2,
+					FlipPoke3.getSecond() / 2);
+		}
+	}
+
+//	 nextgame auto
+	public static void nextGame() {
+		frame.dispose();// clear man hinh
+		// tang level len qua man moi so diem và thời gian cũ vẫn được duy trì
+		new FlipPoke(FlipPoke3.getLevel() + 1, Integer.parseInt(FlipPoke3.getButtonScore().getText()), FlipPoke3.getSecond());
+	}
+}

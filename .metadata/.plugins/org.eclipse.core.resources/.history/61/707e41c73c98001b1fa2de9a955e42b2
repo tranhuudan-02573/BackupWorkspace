@@ -1,0 +1,330 @@
+package Calculator;
+
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+/*
+ * Phiên bản đầu tiên khi mới xây dựng calculator, xử lí dữ liệu bằng mảng
+ */
+
+public class Calculator2 extends Frame implements ActionListener {
+	JFrame fr;
+	JTextField text;
+	JPanel pnTop, pnBot, pnMain;
+	public String[] btname = { "%", "And", "AC", "Del", "7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3", "*", "0",
+			".", "=", "/" };
+	JButton bt[] = new JButton[20];
+	JButton btn;
+	int count = 0;
+	String[] st = new String[100];
+
+	private JButton myButton(String a) {
+		btn = new JButton(a);
+		btn.addActionListener(this);
+		btn.setActionCommand(a);
+		return btn;
+	}
+
+	// Tùy Chỉnh giao diện calculator
+	public Calculator2() {
+		fr = new JFrame("calculator");
+		text = new JTextField();
+		text.setFont(new Font("arial", Font.BOLD, 40));
+
+		pnTop = new JPanel();
+		pnTop.setLayout(new GridLayout(1, 1));
+		pnTop.add(text);
+
+		pnBot = new JPanel();
+		pnBot.setLayout(new GridLayout(5, 4, 5, 5));
+		pnBot.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+		for (int i = 0; i < 20; i++) {
+			bt[i] = myButton(btname[i]);
+			pnBot.add(bt[i]);
+		}
+
+		pnMain = new JPanel();
+		pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));
+		pnMain.add(pnTop);
+		pnMain.add(pnBot);
+
+		fr.add(pnMain);
+		fr.setDefaultCloseOperation(fr.EXIT_ON_CLOSE);
+		fr.setSize(500, 400);
+		fr.setLocationRelativeTo(null);
+		fr.setVisible(true);
+
+	}
+
+	// Phương thức này dùng để kiểm tra dấu (trừ dấu ".")
+	public boolean checkMarkOther(String a) {
+		return (a == "+") || (a == "-") || (a == "*") || (a == "/");
+	}
+
+	/*
+	 * Đây là phiên bản đầu tiên của event calculator sử dụng mảng để lưu trữ, xử lí
+	 * các event mà người dùng thao tác Về sau có phiên bản thứ 2 dùng cách xử lí
+	 * chuỗi tiện lợi hơn (gợi ý của anh Tiến) ==> nhớ Phần tử đầu tiên của mảng,
+	 * chuỗi,... bắt đầu từ [0]
+	 */
+	public static boolean checkMark(String a) {
+		return (a == "+") || (a == "-") || (a == "*") || (a == "/") || (a == ".");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		double a;
+		/*
+		 * Khi bạn làm biếng và không muốn tạo event thủ công các nút từ 0->9 Sử dụng
+		 * hàm đổi kiểu int -> String Ta chỉ có thể equal kiểu String với nhau, nhưng
+		 * String lại không cho phép chạy trong loop Lợi dụng việc kiểu int có để chạy
+		 * trong loop, khắc phục được nhược điểm của String Mối liên hệ của chúng là hàm
+		 * <valueOf()>
+		 */
+		for (int i = 0; i <= 9; i++) {
+			if (e.getActionCommand().equals(String.valueOf(i))) {
+				st[i] = "" + String.valueOf(i);
+				text.setText(text.getText() + i);
+			}
+		}
+		/*
+		 * Dấu cộng , trừ, nhân, chia, "." không thể tồn tại 2 dấu đứng sát nhau "+"&"-"
+		 * có thể đứng đầu của chuỗi ( "*", "/" thì không) Dấu "." sẽ đi cụ thể trogn
+		 * phần dấu "."
+		 */
+		if (e.getActionCommand().equals("+")) {
+			// Khi nút "+" được nhấn,
+			// kiểm tra xem kí tự trước nó có phải là "dấu" không (kí tự cuối cùng của
+			// chuỗi)
+			if (!checkMark(st[count + 1])) { // nếu không phải là "dấu"
+				st[count + 1] = "" + "+";// lưu trong mảng để xử lí
+				count++;
+				text.setText(text.getText() + "+");// thêm dấu "+" vào cuối
+			} else { // là "dấu" thì xóa dấu trước đó và thêm dấu mới vào
+				text.setText(text.getText().substring(0, text.getText().length() - 1) + "+");
+				st[count + 1] = "" + "+";// lưu trong mảng để xử lí
+			}
+		}
+		// Tương tự dấu cộng các dấu còn lại hoạt động y hệt
+		// Dấu trừ có khác một tí là khi nhấn 2 lần nó sẽ thành dấu +
+		if (e.getActionCommand().equals("-")) {
+			if (!checkMark(st[count + 1])) {
+				st[count + 1] = "" + "-";
+				count++;
+				text.setText(text.getText() + "-");
+			} else {
+				if (st[count] == "-") {// nếu phía trước là "-" thì đổi thành "+"
+					text.setText(text.getText().substring(0, text.getText().length() - 1) + "+");
+					st[count + 1] = "" + "+";
+				} else {
+					text.setText(text.getText().substring(0, text.getText().length() - 1) + "-");
+					st[count + 1] = "" + "-";
+				}
+			}
+		}
+		// Dấu nhân và chia không thể đứng ở đầu tiên có nghĩa là không thể đứng ở vị
+		// trí thứ 1
+		if (e.getActionCommand().equals("*")) {
+			if (!(count == 1)) {// khác vị trí 1 mới nhận lệnh, (count là vị trí trong mảng)
+
+				if (!checkMark(st[count + 1])) {
+					st[count + 1] = "" + "*";
+					count++;
+					text.setText(text.getText() + "*");
+				} else {
+
+					text.setText(text.getText().substring(0, text.getText().length() - 1) + "*");
+					st[count + 1] = "" + "*";
+
+				}
+			}
+		}
+		// Tương tự dấu Nhân
+		if (e.getActionCommand().equals("/")) {
+			if (!(count == 1)) {
+				if (!checkMark(st[count + 1])) {
+					st[count + 1] = "" + "/";
+					count++;
+					text.setText(text.getText() + "/");
+				} else {
+					text.setText(text.getText().substring(0, text.getText().length() - 1) + "/");
+					st[count + 1] = "" + "/";
+				}
+			}
+		}
+		// xoa 1 ki tu, ta sử dụng hàm <Substring()>(hàm này trả về chuỗi con từ chuỗi
+		// cha ta truyền cho nó)
+		// nếu muốn xóa kí tự cuối thì ta chỉ cần lấy ra chuỗi con từ đầu => kí tự kề
+		// cuối
+		if (e.getActionCommand().equals("Del")) {
+			if (!text.getText().equals("")) {
+
+				text.setText(text.getText().substring(0, text.getText().length() - 1));
+				// nhớ xóa trong mảng
+				count++;
+				st[count] = "";
+			}
+		}
+		// xoa toan bo ki tu
+		if (e.getActionCommand().equals("AC")) {
+			text.setText("");
+			for (int i = 1; i < count; i++) {
+				st[i] = "";
+			}
+			count = 0;// nhớ đặc count về 1
+
+		}
+		/*
+		 * Dấu "." cần thỏa mãng 1. 1 kí tự phía trước nó là 1 con số 2. con số đó không
+		 * được có dấu chấm nào vd: -2.908 -> true 2.9.08 -> false +. -> false Khi xử lí
+		 * bằng chuỗi chúng ta sẽ sử dụng hàm indexOf(), vẫn dùng nguyên lí tương tự như
+		 * trên
+		 */
+
+		if (e.getActionCommand().equals(".")) {
+//			st[1] = "+";// setup để không lỗi, vì điều kiện để nhận ra 1 con số là trước "dấu"
+			boolean check = true;// mặc định là số trước nó không có dấu "."
+
+			if (!checkMark(st[count + 1])) {// kiểm tra kí tự đầu nếu khác "dấu" thì thực hiện if
+				while (!checkMarkOther(st[count])) { // while chạy đến khi nào nó gặp 1 "dấu", đi từ cuối về đầu
+
+					if (st[count] == ".") { // kiểm tra phía trước đã có đấu "." chưa, nếu có đánh dấu là sai và thoát
+											// loop
+						check = false;
+						break;
+					}
+					count--;//
+				}
+				if (check) { // thỏa đk thì in dấu "."
+					text.setText(text.getText() + ".");
+					st[count] = ".";
+					count++;
+				}
+
+			}
+		}
+		// sửa lỗi khi bạn nhấn dấu "+","-" và thay thế nó bằng dấu "*" or "/" đầu tiên,
+		// thử cmt lại và cảm nhận nhé!
+		if (text.getText().equals("*") || text.getText().equals("/")) {
+			text.setText("");
+			st[count] = "";
+			count--;
+		}
+		// hàm này sử lí trong class ActionCalculator, có chú thích cụ thể
+		if (e.getActionCommand().equals("=")) {
+			// kiểm tra kí tự cuối cùng nếu không phải là dấu thì thực hiện tính toán
+			if (!checkMark(text.getText().substring(text.getText().length() - 1))) {
+				// kiểm tra dấu // đoạn dài ngoằng này chỉ để lấy ra kí tự cuối cùng //
+				text.setText("" + result(text.getText()));// in kết quả
+			}
+		}
+
+	}
+	// kiem tra dau
+
+	// tao mang toi uu,
+	// VD "27+3333*49" => ["27","+3333","*","49"]
+	public static ArrayList<String> createOptimalStr(String st) {
+		ArrayList<String> opStr = new ArrayList<String>();
+		int countNext = getLocalMark(st);// Tìm vị trí dấu đầu tiên, trả về giá trị khác vị trí đầu tiên
+		while (countNext != -1) {// khi countNext = -1 có nghĩa là không còn "dâu" nào trong chuỗi => dừng lặp
+			if (checkPlusMinus(countNext, st)) {// Nếu "dấu đó là "+" or "-" thì
+				opStr.add(st.substring(0, countNext));// cắt số trước "dấu" luu vào mảng kết quả
+				st = st.substring(countNext);// tạo chuỗi mới đã xóa phần tử đã cắt
+			} else {// nếu dấu là "*" or "/" thì
+				opStr.add(st.substring(0, countNext)); // cắt số trước "dấu" luu vào mảng kết quả
+				opStr.add(st.substring(countNext, countNext + 1));// cắt "dấu" lưu vào mảng kết quả
+				st = st.substring(countNext + 1); // tạo chuỗi mới đã xóa phần tử đã cắt
+			}
+			countNext = getLocalMark(st);// tìm lại vị trí countNext cho chuỗi mới xóa các phần tử đã cắt
+		}
+		opStr.add(st);// khi hết "dấu" => countNext =-1 => vòng while đóng lại
+		// => thừa 1 chuỗi số cuối cùng chưa lưu vào kết quả, lưu dãy số đó vào mảng kết
+		// quả
+		return opStr;
+	}
+
+	private static boolean checkPlusMinus(int countNext, String st) {
+		// Lấy "dấu" đó ra bằng hàm Substring và kiểm tra nó có phải dấu "+" or "-"
+		// không,
+		String s = st.substring(countNext, countNext + 1);
+		return s.equals("+") || s.equals("-");
+	}
+
+	private static int getLocalMark(String st) {
+		// Kiểm tra vị trí của các "dấu" trong chuỗi,
+		// trả về kí tự dấu đầu tiên tính từ vị trí thứ 1 trở đi(nghĩa là ta không xét
+		// vị trí đầu tiên)
+		String[] a = { "+", "-", "*", "/" };
+		int value = st.length();
+		// VD "27+3333*49" trả về 2, "-27+3333*49" trả về 2, không tính kí tự đầu tiên
+		// khi kiểm tra đấu
+		for (int i = 0; i < 4; i++) {
+			if ((value > st.indexOf(a[i], 1)) && (st.indexOf(a[i], 1) != -1)) {
+				value = st.indexOf(a[i], 1);
+			}
+			// điều kiện tối quan trọng khi không còn "dấu" nào nữa thì trả về -1,
+			// đây là dk để kết thúc vòng while ở trên <createOptimalStr(String st)>
+			if ((st.indexOf(a[0], 1) == -1) && (st.indexOf(a[1], 1) == -1) && (st.indexOf(a[2], 1) == -1)
+					&& (st.indexOf(a[3], 1) == -1)) {
+				value = -1;
+			}
+		}
+		return value;
+	}
+
+	public static double result(String st) {
+		double sum = 0;
+		ArrayList<String> opStr = new ArrayList<String>();
+		ArrayList<Double> R = new ArrayList<Double>();
+		opStr = createOptimalStr(st);
+		/*
+		 * Kiểm tra các dấu "*" or "/" trong arraylist nếu gặp tính tích or thương của 2
+		 * số gần kề "dấu" rồi đưa lên array kết quả (R)
+		 */
+
+		for (int i = 0; i < opStr.size(); i++) {
+			// Tích
+			if (opStr.get(i).equals("*")) {
+				R.add(Double.parseDouble(opStr.get(i - 1)) * Double.parseDouble(opStr.get(i + 1)));
+				opStr.set(i, "0");
+				opStr.set(i - 1, "0");
+				opStr.set(i + 1, "0");
+			}
+			// Thương
+			if (opStr.get(i).equals("/")) {
+				R.add(Double.parseDouble(opStr.get(i - 1)) / Double.parseDouble(opStr.get(i + 1)));
+				opStr.set(i, "0");
+				opStr.set(i - 1, "0");
+				opStr.set(i + 1, "0");
+			}
+			// Đưa hết tất cả các phần từ còn lại trong Array(opStr) lên Array kết quả (r)
+			R.add(Double.parseDouble(opStr.get(i)));
+			// Tính tổng Array kết quả (R);
+			sum += R.get(i);
+		}
+
+//			System.out.println(R);
+		return sum;
+
+	}
+
+	public static void main(String[] args) {
+		new Calculator2();
+
+	}
+}

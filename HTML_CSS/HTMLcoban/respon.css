@@ -1,0 +1,28 @@
+.content{
+    width: 600px;
+    background: pink;
+    padding: 20px;
+
+}
+.content h3{}
+@media(max-width:992px) and (min-width: 576px){
+    /* khu vuv cua man hinh ipad tu 992px tro xuong */
+    /* dien thoai thi tu 576 tro xuong */
+.content{
+    width: 220px;
+    background-color: black;
+    color: white;
+    font-family: segoe ui;
+
+}
+
+}
+@media(max-width:575px){
+    .content{
+        width: 520px;
+        background-color: rgb(231, 26, 26);
+        color: rgb(36, 53, 209);
+        font-family: segoe ui;
+    
+    }
+}

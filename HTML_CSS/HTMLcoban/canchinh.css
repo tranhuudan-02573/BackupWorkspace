@@ -1,0 +1,17 @@
+.khung{
+    width: 800px;
+    height: 400px;
+    margin: auto;
+    background-image: url(s1.jpg);
+    /* text-align: center; */
+    color: aliceblue;
+    font-size: 33px;
+    font-family: segoe ui;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.khung .noidung{
+    background: black;
+    padding: 31px;
+}

@@ -1,0 +1,13 @@
+.myslide{
+   width:  500px;
+    height: 300px;
+
+}
+.myslide img{
+    width: 500px;
+}
+.myslide .carousel-indicators{
+    /* opacity: 0;
+    visibility: hidden; */
+    display: none;
+}

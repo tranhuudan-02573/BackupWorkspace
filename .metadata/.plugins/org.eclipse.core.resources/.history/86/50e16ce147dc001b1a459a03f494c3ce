@@ -1,0 +1,252 @@
+package MyPaint;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class DrawingPanel extends JPanel {
+	StatusBar statusBar;
+	String shapeType = "";
+	Color color, colorBackground;
+	AShape lastShape;
+	List<AShape> shapes;
+	int x;
+	int y;
+	int stroke;
+	boolean started, command;
+	AShape shapeSelect;
+	int shapeIndex;
+
+	public DrawingPanel(StatusBar statusBar) {
+		color = Color.black;
+		colorBackground = Color.white;
+		this.statusBar = statusBar;
+		shapes = new ArrayList<AShape>();
+		MouseAdapter mouse = new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				switch (shapeType) {
+				case "Circle":
+					lastShape = new Circle(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "Line":
+					lastShape = new Line(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "Rectangle":
+					lastShape = new Rectangle(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					started = true;
+					break;
+				case "TriangleType1":
+					lastShape = new TriangleType1(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "TriangleType2":
+					lastShape = new TriangleType2(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "Square":
+					lastShape = new Square(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "Oval":
+					lastShape = new Oval(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "Pen":
+					lastShape = new Pen(e.getX(), e.getY(), color,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				case "Eraser":
+					lastShape = new Pen(e.getX(), e.getY(), colorBackground,
+							new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					shapes.add(lastShape);
+					started = true;
+					for (AShape shape : shapes) {
+						shape.select = false;
+					}
+					break;
+				}
+				repaint();
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				started = false;
+				System.out.println("Commnad " + command);
+				if (command)
+					lastShape.setCommand(statusBar);
+
+				for (AShape shape : shapes) {
+					if (shape.select) {
+						if (shape.round(e.getPoint())) {
+							lastShape.setCommand(statusBar);
+						} else if (shape.center(e.getPoint())) {
+							lastShape.setCommand(statusBar);
+
+						}
+					}
+				}
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				switch (shapeType) {
+				case "selecOn", "Fill", "Delete", "Color":
+					select(e.getPoint());
+					break;
+				case "selecOff":
+					return;
+				}
+				repaint();
+			}
+
+		};
+
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+				statusBar.setPoint(x, y);
+				for (AShape shape : shapes) {
+					if (shape.select) {
+						if (shape.round(e.getPoint()))
+							setCursor(new Cursor(Cursor.E_RESIZE_CURSOR));
+						else
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+						if (shape.center(e.getPoint()))
+							setCursor(new Cursor(Cursor.E_RESIZE_CURSOR));
+						else
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+					} else
+						setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+				}
+			}
+
+			public void mouseDragged(MouseEvent e) {
+
+				for (AShape shape : shapes) {
+					if (shape.select) {
+						if (shape.round(e.getPoint())) {
+							shapeSelect.scale(e.getX(), e.getY());
+						} else if (shape.center(e.getPoint())) {
+
+							shapeSelect.move(e.getPoint());
+
+						}
+					}
+				}
+
+				if (started)
+					lastShape.setSecondPoint(e.getX(), e.getY());
+				repaint();
+			}
+		});
+
+		KeyAction key = new KeyAction(this);
+		addKeyListener(key);
+		addMouseListener(mouse);
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2D = (Graphics2D) g;
+		setBackground(colorBackground);
+		g2D.setStroke(new BasicStroke(stroke, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+		for (int i = 0; i < shapes.size(); i++) {
+
+			if (shapes.get(i).fill) {
+				shapes.get(i).fill(g2D);
+			} else {
+				shapes.get(i).draw(g2D);
+			}
+			if (shapes.get(i).select) {
+				shapeSelect = shapes.get(i);
+				shapeSelect.select(g2D);
+				shapeIndex = i;
+			} else
+				shapes.get(i).draw(g2D);
+		}
+
+	}
+
+	public void select(Point p) {
+		for (int i = 0; i < shapes.size(); i++) {
+			if (shapes.get(i).contains(p)) {
+				shapes.get(i).select = true;
+			} else {
+				shapes.get(i).select = false;
+			}
+		}
+	}
+
+	public void setShapeType(String type) {
+		this.shapeType = type;
+		this.statusBar.setMessage("Bạn đã chọn " + type);
+	}
+
+}

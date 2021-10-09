@@ -1,0 +1,26 @@
+*{margin: 0; padding: 0;}
+._1item{
+    position: relative;
+}
+._1item .layer1{
+    position: relative;
+    height: 20px;
+    background-color: brown;
+    line-height: 20px;
+}
+._1item:hover .layer1{}
+._1item .layer2{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: 20px;
+    left: 0px;
+    transition: 0.3s;
+}
+._1item:hover .layer2{
+    visibility: visible;
+    opacity: 1;
+}
+._1item .layer2 ul{}
+._1item .layer2 ul li{}
+._1item .layer2 ul li a{}

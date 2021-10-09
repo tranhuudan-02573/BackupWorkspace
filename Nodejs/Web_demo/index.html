@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+
+	<body>
+		<div class="main-top">
+			<div class="place-create">
+				<div>
+					<div class="form">
+						<label class="label-name">Name: </label>
+						<input type="text" name="name" />
+					</div>
+					<div class="form"><label class="label-desc">Description: </label><input type="text"
+							name="description" /></div>
+				</div>
+				<div class="BtnFunc">
+					<div><button id="create" class="btn--nonehidden">CREATE</button></div>
+					<div><button id="update" class="btn--hidden">UPDATE</button></div>
+					<div><button id="cancel" class="btn--hidden">CANCEL</button></div>
+				</div>
+			</div>
+			<div class="place-find">
+				<div class="find">
+					<div>
+
+						<label class="label-find">Find:</label>
+						<input type="text" name="find">
+					</div>
+				</div>
+				<div class="btnFunc ">
+					<button class="btnFind" id="find" onclick="handleFindCourse()">FIND</button>
+				</div>
+			</div>
+
+		</div>
+		<div class="frame">
+			<div class="dskh">
+				<h2>Danh Sách Các Khóa Học:</h2>
+				<ul id="list-courses"></ul>
+			</div>
+		</div>
+		<script src="index.js"></script>
+	</body>
+
+</html>

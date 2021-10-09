@@ -1,0 +1,64 @@
+package baiTapTuLuyen;
+
+public class Encrynted {
+	public static String encryptHelper(String text, int colNum) {
+		String res = "";
+		int rowNum = text.length() / colNum;
+		if (text.length() % colNum > 0) {
+			rowNum++;
+		}
+		char[][] matrix = new char[rowNum][colNum];
+		for (int row = 0, index = 0; row < rowNum; row++) {
+			for (int col = 0; col < colNum; col++) {
+				char c = '-';
+				if (index < text.length()) {
+					c = text.charAt(index++);
+				}
+				matrix[row][col] = c;
+			}
+		}
+		for (int col = 0; col < colNum; col++) {
+			for (int row = 0; row < rowNum; row++) {
+				res += matrix[row][col];
+			}
+		}
+
+		return res;
+
+	}
+
+	public static String dencryptHelper(String text, int colNum) {
+		String res = "";
+		int rowNum = text.length() / colNum;
+		if (text.length() % colNum > 0) {
+			rowNum++;
+		}
+		char[][] matrix = new char[rowNum][colNum];
+		
+			for (int col = 0; col < colNum; col++) {
+				for (int row = 0, index = 0; row < rowNum; row++) {
+				char c = '-';
+				if (index < text.length()) {
+					c = text.charAt(index++);
+				}
+				matrix[row][col] = c;
+
+			}
+		}
+		for (int row = 0; row < rowNum; row++) {
+			for (int col = 0; col < colNum; col++) {
+
+				res += matrix[row][col];
+			}
+		}
+		return res;
+
+	}
+
+	public static void main(String[] args) {
+		String s = "Hai map nhu heo!";
+		System.out.println(encryptHelper(s, 5));
+		System.out.println(dencryptHelper("Hau!ap -i h- ne-mho-", 5));
+	}
+
+}

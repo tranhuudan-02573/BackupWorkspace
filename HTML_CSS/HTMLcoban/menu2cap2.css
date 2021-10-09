@@ -1,0 +1,91 @@
+*{margin: 0; padding: 0;}
+.menutren{
+    width: 100%;
+    height: 29px;
+    border: 1px solid gray;
+    line-height: 29px;
+    
+}
+.menutren > ul{
+    display: flex;
+    list-style: none;
+    
+    
+}
+.menutren > ul > li{
+    
+}
+._1item{   
+    position: relative;
+    height: 29px;    
+    line-height: 29px;    
+    
+}
+._1item .layer1{
+    text-decoration: none;  
+    color: black;
+    font-family: segoe ui light;
+    font-size: medium;
+    border-radius: 3px;
+    padding:  1px 23px 0px 23px;
+    
+    
+    width: 76px;
+    display: block;
+    
+   
+    
+   
+}
+._1item:hover .layer1{
+    background-color: gray;
+    
+    
+    
+    
+    
+    
+    
+}
+._1item .layer2{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: 50px;
+    left: 0px;
+    transition: 0.3s;
+    width: 200px;
+    background-color: hsla(0, 0%, 100%, 0.952);
+    border-radius:  3px;
+    
+   
+    
+}
+._1item:hover .layer2{
+    visibility: visible;
+    opacity: 1;
+    top: 31px;
+}
+._1item .layer2 ul{
+    list-style: none;
+}
+._1item .layer2 ul li{
+
+}
+._1item .layer2 ul li a{
+   display: block;
+   width: 200px;
+   text-decoration: none;
+   color: black;
+   font-family: segoe ui light;
+   font-size: medium;
+   padding: 10px 20px;
+   border-bottom: 1px solid gray;
+   box-sizing: border-box;
+   
+
+}
+._1item .layer2 ul li a:hover{
+    background-color:gray;
+    
+}

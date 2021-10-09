@@ -1,0 +1,41 @@
+.cottrai{
+    font-family: segoe ui light;
+    font-size: 13px;
+    width: 600px;
+}
+.cottrai img{
+
+  width: 100% ;  
+
+}
+a.anhvatieude{
+    text-decoration: none;
+    color: grey;
+    font-size: 25px;
+
+}
+a.anhvatieude h3{
+    padding: 0;
+    margin: 0;
+
+}
+a.anhvatieude:hover {
+    color: rgb(58, 58, 138);
+}
+a.nguon, a.lq{
+    text-decoration: none;
+    padding-right: 10px;
+    /* margin-right: 10px; */
+}
+span.gio{
+    padding-right: 10px;
+    /* margin-right: 10px; */
+}
+ div.duoi{
+    display: flex;
+    
+}
+div.duoi a.img{
+    width: 10px;
+    width: 100%;
+}

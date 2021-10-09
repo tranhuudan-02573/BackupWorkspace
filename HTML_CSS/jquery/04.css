@@ -1,0 +1,66 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+ .tieude{
+font-weight: 100px;
+text-align: center;
+margin: 17px 0;
+font-size: 37px;
+font-family: 'Josefin Slab', serif;
+margin-bottom: 100px;
+}
+.noidung{
+    width: 37%;
+    margin: auto;
+    font-family: 'Josefin Slab', serif;
+}
+.arrow{
+    width: 50px;
+    height: 55px;
+    transform: translateY(-9px);
+    float: right;
+    transition: 0.4s;
+    transform: rotate(0deg);
+    margin-right: -100px;
+    
+}
+.anhnho{
+    float: left;
+    height: 100px;
+    margin-right: 10px;
+}
+.vaicaianh{
+    overflow: hidden;
+}
+._1khoi{
+    border-bottom: 1px solid gray;
+    padding-bottom: 42px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+.tdkhoi {
+    height: 55px;
+    font-size: 50px;
+    color: gray;
+    font-weight: 300;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.tdkhoi:hover .arrow{
+    margin-right: 0px;
+}
+.tdkhoi:hover{
+    color: black;
+}
+.ndkhoi{
+    color: gray;
+    font-size: 20px;
+    line-height: 24px;
+}
+.tdkhoi.den{
+    color: black;
+}
+.tdkhoi.den .arrow{
+    margin-right: 0;
+    transform: rotate(180deg);
+    /* margin-top: 10px; */
+}
+

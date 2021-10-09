@@ -1,0 +1,89 @@
+*{margin: 0;padding: 0; box-sizing: border-box;}
+.phantren{
+    height: 800px;
+    position: relative;
+    overflow: hidden;
+}
+.anhnen{
+    height: 700px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: url(https://cdn.pixabay.com/photo/2017/08/27/00/51/beads-2684881__340.jpg);
+    width: 100%;
+    height: 800px;
+    transition: 0.4s;
+    opacity: 0;
+    background-size: cover;
+    animation: hienra 1.4s forwards;
+}
+@keyframes hienra{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+.cogai{
+position: absolute;
+bottom: 0;
+z-index: 2;
+right: 24%;
+transition: 0.4s;
+bottom: -800px;
+animation: cogai 1s forwards;
+animation-delay: 0.5s;
+}
+@keyframes cogai{
+    0%{bottom: -800px;}
+    100%{bottom: 0px;}
+}
+.chuto, .chunho{
+    z-index: 3;
+    top: 33%;
+    position: absolute;
+    left: 23%;
+    font-size: 45px;
+    font-family: segoe ui light;
+    color: black;
+    animation: divao 1s forwards;
+    transition: 0.4s;
+    opacity: 0;
+    animation-delay: 1s;
+}
+@keyframes divao{
+    0%{transform: translateX(-600px); opacity: 0;}
+    100%{transform: translateX(0);opacity: 1;}
+}
+.chunho{
+    font-size: 23px;
+    top: 46%;
+    left: 21%;
+    width: 400px;
+    text-align: center;
+animation-delay: 1.5s;
+}
+.nut{
+    position: absolute;
+    top: 60%;
+    left: 28%;
+    z-index: 4;
+    background: #13bfb1;
+    color: white;
+    padding: 12px 24px;
+    font-family: segoe ui light;
+    border-radius: 5px;
+    animation: hienra 0.5s forwards;
+    opacity: 0;
+    animation-delay: 2s;
+}
+.menu{
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    z-index: 5;
+    width: 1064px;
+    height: 87px;
+    opacity: 0;
+    background: white;
+    animation: hienra 0.5s forwards;
+    /* animation-delay: 1s; */
+}

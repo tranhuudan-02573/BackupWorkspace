@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="baitaplaptrinh/chuong1"/>
+	<classpathentry kind="src" path="baitaplaptrinh/chuong2"/>
+	<classpathentry kind="src" path="baitaplaptrinh/chuong3"/>
+	<classpathentry kind="src" path="baitaplaptrinh/chuong4"/>
+	<classpathentry kind="src" path="baitaplaptrinh/chuong5"/>
+	<classpathentry kind="src" path="baitaplaptrinh/src"/>
+	<classpathentry kind="src" path="baitapnhom/src"/>
+	<classpathentry kind="src" path="CLEANCODE/src"/>
+	<classpathentry kind="src" path="giaotrinh/listSorting"/>
+	<classpathentry kind="src" path="giaotrinh/rest"/>
+	<classpathentry kind="src" path="giaotrinh/restmethod"/>
+	<classpathentry kind="src" path="giaotrinh/src"/>
+	<classpathentry kind="src" path="hoclaptrinh/src"/>
+	<classpathentry kind="src" path="laptrinhnangcao/src"/>
+	<classpathentry kind="src" path="SOLID/Solid"/>
+	<classpathentry kind="output" path="SOLID/bin"/>
+</classpath>

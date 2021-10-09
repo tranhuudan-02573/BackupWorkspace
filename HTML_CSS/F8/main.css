@@ -1,0 +1,94 @@
+:root{
+    --text-color: red;
+}
+h1{
+    color: var(--text-color);
+    font-size: calc(120px-20px+30%);
+}
+a::after{
+    content: " (" attr(href)")";
+}
+.box{
+    background: pink;
+    width: 120px;
+    height: 120px;
+}
+.box::after{
+    content: attr(data-title);
+    content: attr(title);
+
+}
+.css{
+       /* box-sizing: border-box; làm cho padding border ko làm tăng kích thước thực tế lên */
+    /* background-clip: content-box giống bộ lọc khi sử dụng background-color ko cần đổ padding hay border của phần tử đó */
+     /* background-size: 20px; làm cho hình ảnh thu nhỏ lại */
+     /* background: url(link),url(link trong suốt),linear-gradient(tọa độ đổ màu, mã màu trong suốt hoặc không); */
+     /* background-size: contain; nằm trong 1 khung chứa chấp nhận việc có khoảng trắng  */
+     /* background-size: cover; tràn đầy hình ảnh ko chứa khoảng trắng */
+     /* background-origin: ; tương tự như background-clip: nhưng được sử dụng cho đổ hình ảnh image */
+     /* background-position: ; di chuyển vị trí của hình ảnh có thể top left % px */
+     background: url() no-repeat center / contain;
+
+}
+/*
+   
+
+    *position: top left bottom right
+        relative lấy chính mình làm gốc tọa độ
+        absolute lấy thẻ cha gần nhất làm gốc tọa độ kể cả là position: absolute
+        fixed cố định trên cửa sổ trình duyệt
+        sticky bám dính tại 1 tọa độ nào đó trên trình duyệt ít được hỗ trợ :-webkit-sticky;
+
+
+    * css pseudo-elements: khi không thẻ nào gọi thì mặc định là sử dụng cho phần tử gốc là toàn văn bản
+        ::after được nằm sau cùng trong các con của phần tử cha đó
+        ::before    được nằm trên cùng trong các con của phần tử cha đó
+        ::first-letter chọn ra được kí tự đầu tiên trong string đó
+        ::first-line   chọn ra được dòng đầu tiên trong số nhiều dòng mặc dù nằm cùng trong 1 thẻ
+        ::selection khi bôi chuột lớp này được thực thi
+        ::marker sử dụng cho các thẻ li trong ul hoặc ol
+
+    * css pseudo-classes
+        :root tham chiếu đến phần tử gốc -htmml
+        :hover
+        :active kích hoạt khi nhấn và giữ chuột
+        :first-child
+        :last-child
+        :link thay đổi thuộc tính mặc định của thẻ a
+        :visited khi nhấn vào link rồi sẽ thực thi css này
+    * css functions
+        var()
+        linear-gradient()
+        rgba() có chỉ số alpha cho phép nhìn xuyên
+        rgb() màu đặc
+        calc()
+        attr()
+
+    *priority
+        1. internal, external
+        2. inline 1000
+        3. #id 100
+        4. .class 10
+        5. tag 1
+        6. equal specificity
+        7. universal selector and inherited
+
+   * 1. absolute unit
+        px
+        pt
+        cm
+        mm
+        inch
+        pc
+    2. relative unit
+        % căn theo thẻ cha
+        rem căn theo thẻ html
+        em căn theo thẻ cha
+        vw căn theo màn hình
+        vh căn theo màn hình
+        vmin
+        vmax
+        ex
+        ch
+
+*/

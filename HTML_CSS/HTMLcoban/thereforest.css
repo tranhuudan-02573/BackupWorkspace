@@ -1,0 +1,40 @@
+body, html{
+    height: 100%;
+    margin: 0;
+}
+.menu{
+    height: 100%;
+    background-size: cover;
+    background-image: url(https://cortex.qodeinteractive.com/wp-content/uploads/2017/07/h11-rev-img-1.jpg);
+}
+.menu ul{
+    list-style: none;
+    font-family: segoe ui;
+    font-size: 15px;
+    margin: 0;
+}
+.menu ul li{
+    padding-bottom: 5px;
+    transition: 0.4s;
+    
+}
+.menu ul li .icon{
+    color: rgb(160, 7, 190) ;
+    display: inline;
+    opacity: 0;
+    transition: 0.4s;
+}
+.menu ul li:hover .icon{
+    opacity: 1; 
+}
+.menu ul li:hover {
+   margin-left: 15px;
+    opacity: 1; 
+}
+.menu ul li .chu{
+    display: inline;
+    color: rgb(184, 35, 35);
+}
+.menu ul li a{
+     text-decoration: none;
+}

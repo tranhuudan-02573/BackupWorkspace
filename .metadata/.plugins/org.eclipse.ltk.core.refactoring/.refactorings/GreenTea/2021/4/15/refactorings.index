@@ -1,0 +1,37 @@
+1617510308713	Delete element
+1617510321958	Infer generic type arguments
+1617537931709	Rename type 'GameSnake'
+1617538024493	Delete element
+1617538514635	Rename compilation unit 'Main.java'
+1617538885780	Encapsulate field 'paused'
+1617538944280	Encapsulate field 'timerSecondBar'
+1617538953132	Encapsulate field 'timerTictac'
+1617538960314	Encapsulate field 'buttonPause'
+1617538974413	Encapsulate field 'level'
+1617539005735	Encapsulate field 'buttonScore'
+1617539013094	Encapsulate field 'second'
+1617539368111	Delete element
+1617539370447	Delete element
+1617598291655	Delete element
+1617598648941	Rename package 'SnackGame2'
+1617607950617	Rename field 'timer'
+1617636405576	Move compilation unit
+1617637340197	Rename field 'enemyXpos'
+1617637345542	Rename field 'enemyYpos'
+1617637368996	Rename field 'Xpos'
+1617637375719	Rename field 'Ypos'
+1617637424386	Rename field 'enemyImage'
+1617637464391	Rename field 'snakeImage'
+1617677548055	Rename field 'appleIcon'
+1617680042154	Rename field 'appleX'
+1617680047967	Rename field 'appleY'
+1617681100334	Rename resource 'enemy.png'
+1617681119762	Rename resource 'bigEnemy.png'
+1617681658891	Rename field 'rdAppleX'
+1617681663528	Rename field 'rdAppleY'
+1617681670501	Rename field 'rdAppleBigY'
+1617686953114	Rename field 'count'
+1617854819514	Delete element
+1617854830559	Rename type 'LayoutCalculator'
+1617877126833	Delete element
+1617881511496	Delete element

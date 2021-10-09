@@ -1,0 +1,4 @@
+ul.danhsach{
+    list-style: none;
+    display: flex;
+}

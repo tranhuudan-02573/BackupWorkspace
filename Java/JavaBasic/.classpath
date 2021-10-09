@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="rest"/>
+	<classpathentry kind="src" path="listSorting"/>
+	<classpathentry kind="src" path="restmethod"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="chuong1"/>
+	<classpathentry kind="src" path="chuong2"/>
+	<classpathentry kind="src" path="chuong3"/>
+	<classpathentry kind="src" path="chuong4"/>
+	<classpathentry kind="src" path="chuong5"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

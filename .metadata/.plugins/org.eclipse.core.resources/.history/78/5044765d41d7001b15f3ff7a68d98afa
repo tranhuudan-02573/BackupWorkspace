@@ -1,0 +1,138 @@
+package MyPaint;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+
+public class Line extends AShape {
+	Point secondPoint;
+
+	public Line(int x, int y, Color color, BasicStroke stroke) {
+		super(x, y, color, stroke);
+		secondPoint = new Point(x, y);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void setSecondPoint(int x, int y) {
+		this.secondPoint.setLocation(x, y);
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		g.setColor(color);
+		g.setStroke(stroke);
+		// KEY_ANTIALIASING khử răng cưa
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawLine(location.x, location.y, secondPoint.x, secondPoint.y);
+	}
+
+	@Override
+	public boolean contains(Point p) {
+		// TODO Auto-generated method stub
+		// độ dài AB
+		double AB = Math.round(distance(location, secondPoint) * 100) / 100;
+
+		// độ dài AC
+		double AC = Math.round(distance(location, p) * 100) / 100;
+
+		// độ dài CB
+		double CB = Math.round(distance(p, secondPoint) * 100) / 100;
+
+		return AB == (AC + CB);
+	}
+
+	// tính độ dài
+	public double distance(Point p1, Point p2) {
+		return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+
+	}
+
+	@Override
+	public void fill(Graphics2D g) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public int perimeter() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+//
+//	@Override
+//	public Point getPointMax() {
+//		// TODO Auto-generated method stub
+//		return new Point(Math.max(location.x, secondPoint.x), Math.max(location.y, secondPoint.y));
+//	}
+//
+//	@Override
+//	public Point getPointMin() {
+//		// TODO Auto-generated method stub
+//		return new Point(Math.min(location.x, secondPoint.x), Math.min(location.y, secondPoint.y));
+//	}
+
+	@Override
+	public boolean lyingOn(Point p) {
+		// TODO Auto-generated method stub
+		double AB = Math.round(distance(location, secondPoint) * 100) / 100;
+
+		// độ dài AC
+		double AC = Math.round(distance(location, p) * 100) / 100;
+
+		// độ dài CB
+		double CB = Math.round(distance(p, secondPoint) * 100) / 100;
+
+		return AB == (AC + CB);
+
+	}
+
+	@Override
+	public void setCommand(StatusBar statusBar) {
+		// TODO Auto-generated method stub
+
+		statusBar.command1
+				.setText(statusBar.command1.getText()
+						+ "\n______________________________________________________________________________________"
+						+ "-Line: " + " ||start(" + location.x + ";" + location.y + ")" + " ||end(" + secondPoint.x
+						+ "," + secondPoint.y + ")" + " ||width real of line: "
+						+ Math.sqrt(Math.abs(location.x - secondPoint.x) * Math.abs(location.x - secondPoint.x)
+								+ Math.abs(location.y - secondPoint.y) * Math.abs(location.y - secondPoint.y))
+						+ " ~~Finish");
+	}
+
+	@Override
+	public void move(Point end) {
+		// TODO Auto-generated method stub
+		location.x = end.x;
+		location.y = end.y;
+
+	}
+
+	@Override
+	public int area() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Point center() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void select(Graphics2D g) {
+		// TODO Auto-generated method stub
+		g.setColor(Color.BLUE);
+		g.fillRect(location.x - 10, location.y - 10, (int) (10 + stroke.getLineWidth()),
+				(int) (10 + stroke.getLineWidth()));
+		g.fillRect(secondPoint.x - 10, secondPoint.y - 10, (int) (10 + stroke.getLineWidth()),
+				(int) (10 + stroke.getLineWidth()));
+		g.setColor(color);
+	}
+}

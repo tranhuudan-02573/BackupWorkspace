@@ -1,0 +1,22 @@
+1621827420448	Rename type 'PaintControlColor'
+1621827476581	Rename type 'PanelControlShape'
+1621827485271	Rename type 'PaintControlShape'
+1621827507401	Rename type 'PanelPaint'
+1621827538452	Rename type 'Paint'
+1621828359513	Rename field 'btBatDau'
+1621828372850	Rename field 'btThoat'
+1621828404816	Rename field 'pnMain1'
+1621828450493	Rename local variable 'f1'
+1621828463011	Rename local variable 'f'
+1621828554650	Rename local variable 'fontB'
+1621828568691	Rename local variable 'fontS'
+1621829396388	Rename type 'FrameMain'
+1621829402818	Rename type 'ChayMain'
+1621830165948	Rename local variable 'ln'
+1621908525987	Rename type 'PanelControlShape'
+1621908538893	Rename type 'PanelBoard'
+1621908745236	Delete element
+1621908754534	Rename type 'PanelControlColor'
+1621908763456	Delete element
+1622000342238	Delete element
+1622000622198	Delete element

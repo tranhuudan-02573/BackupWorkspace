@@ -1,0 +1,32 @@
+.menu{}
+.menu ul{
+    display: flex;
+    list-style: none;
+}
+.menu ul li{}
+.menu ul li a{
+    text-decoration: none;
+    font-family: segoe ui;
+    color: rgb(2, 36, 25);
+     padding: 10px 20px;
+}
+.menu ul li a:after{
+    content: '/';
+    padding-left: 20px;
+}
+.menu ul li a:hover{}
+.nut{
+    width: 180px;
+    border-radius: 30px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    background-image: -webkit-linear-gradient(left, #ffcd4a, #f15b26);
+    transition: 0.8s;
+}
+.nut:hover{
+    background-image: -webkit-linear-gradient(left, #129e58, #22da1b);
+}

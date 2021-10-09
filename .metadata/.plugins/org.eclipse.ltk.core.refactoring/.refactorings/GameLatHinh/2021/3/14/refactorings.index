@@ -1,0 +1,50 @@
+1616908731442	Move package
+1616909087478	Rename package 'TrucXanhGame.icon'
+1616915689605	Delete element
+1616926228034	Delete element
+1616926229718	Delete element
+1616926233778	Delete element
+1616926467549	Delete elements
+1616926483573	Delete elements
+1616928116351	Delete element
+1616928139850	Delete element
+1616928754999	Delete element
+1616928760741	Delete element
+1616928927077	Delete element
+1616929171053	Delete element
+1616929223644	Delete element
+1616929574810	Delete element
+1616941024710	Move file
+1616942228044	Delete element
+1616995366475	Delete element
+1616997314395	Delete element
+1617002554904	Rename type 'GameLatHinh'
+1617003408947	Rename field 'preX'
+1617003415776	Rename field 'preY'
+1617003425914	Rename field 'X'
+1617003434433	Rename field 'Y'
+1617003627857	Rename field 'timer'
+1617003646826	Rename field 'timer2'
+1617003663049	Rename field 'cn'
+1617003703938	Rename field 'pn'
+1617003727879	Rename field 'panelMain'
+1617003748999	Rename field 'pn2'
+1617003762897	Rename field 'a'
+1617003771160	Rename field 'bt'
+1617003802022	Rename field 'm'
+1617003808696	Rename field 'n'
+1617003826971	Rename field 'score_lb'
+1617004293528	Rename field 'id'
+1617004364297	Rename field 'tick'
+1617004394005	Rename field 'score_bt'
+1617004401446	Rename field 'btn'
+1617006731792	Rename resource 'icon01.png'
+1617008069552	Delete element
+1617008081344	Delete element
+1617008091131	Rename resource 'icon100.png'
+1617183529009	Rename field 'buttonContinue'
+1617192266784	Rename field 'paused'
+1617192400435	Rename field 'buttonPause'
+1617192520352	Rename field 'buttonPauCont'
+1617192531650	Rename field 'pauCont'
+1617206300134	Rename field 'buttonPause'

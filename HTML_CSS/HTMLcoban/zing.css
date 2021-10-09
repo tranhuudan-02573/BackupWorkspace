@@ -1,0 +1,42 @@
+.bo{
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background-image: url(https://avatar-ex-swe.nixcdn.com/playlist/2018/10/24/6/a/2/3/1540353873905.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.bo .lop2{
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.4s;
+
+}
+.bo:hover .lop2{
+    
+    opacity: 0.4;
+   
+}
+.bo .lop3{
+    color: rgb(202, 16, 16);
+    font-size: 25px;
+    position: absolute;
+    opacity: 0;
+    transition: 0.4s;
+    transform: scale(0);
+ 
+}
+.bo:hover .lop3{
+   
+    transform: scale(1);
+    opacity: 1;
+ 
+}

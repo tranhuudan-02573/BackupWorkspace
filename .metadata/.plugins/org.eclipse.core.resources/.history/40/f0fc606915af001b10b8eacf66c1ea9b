@@ -1,0 +1,38 @@
+package gui.Gui;
+
+import java.awt.CardLayout;
+
+import javax.swing.JFrame;
+
+import gui.Panel.MainPanel;
+
+public class Gui extends JFrame implements ICommon {
+	  private MainPanel mainPanel;
+	 
+	  public Gui() {
+	    initComp();
+	    addComp();
+	    addEvent();
+	  }
+	 
+	  @Override
+	  public void initComp() {
+	    // cài đặt ban đầu cho Frame
+	    setSize(500, 400);
+	    setLayout(new CardLayout());
+	    setLocationRelativeTo(null);
+	    setDefaultCloseOperation(EXIT_ON_CLOSE);
+	  }
+	 
+	  @Override
+	  public void addComp() {
+	    // thêm Panel vào Frame
+	    mainPanel = new MainPanel();
+	    add(mainPanel);
+	  }
+	 
+	  @Override
+	  public void addEvent() {
+	    // thêm sự kiện
+	  }
+	}

@@ -1,0 +1,46 @@
+1617241982764	Rename method 'open'
+1617243594761	Rename field 'toggleButtonPause'
+1617249451419	Rename local variable 'images'
+1617249488171	Rename local variable 'imagess'
+1617249527067	Rename field 'images'
+1617255370960	Rename field 'buttonScore'
+1617255380390	Rename field 'buttonNext'
+1617255389289	Rename field 'buttonPause'
+1617255462347	Rename field 'buttonRes'
+1617255473773	Rename field 'panelImages'
+1617255480760	Rename field 'panelScores'
+1617255486632	Rename field 'panelTime'
+1617255503127	Rename field 'panelFunc'
+1617255520374	Rename field 'timerChecking'
+1617255531659	Rename field 'timerProgress'
+1617255545614	Rename field 'labelScore'
+1617262845183	Rename field 'progressTime'
+1617279033981	Rename field 'timePanel'
+1617287478427	Rename field 'progressTimer'
+1617287490999	Rename field 'secondTimer'
+1617342608422	Rename method 'Check'
+1617356033158	Delete element
+1617356034459	Delete element
+1617356035325	Delete element
+1617363990918	Rename resource 'icon100.jpg'
+1617418613307	Rename field 'scorePanel'
+1617418618720	Rename field 'imagePanel'
+1617418634848	Rename field 'checkingTimer'
+1617418642261	Rename field 'tictacTimer'
+1617418653630	Rename field 'secondBarTimer'
+1617418661008	Rename field 'scoreLabel'
+1617418666973	Rename field 'timeLabel'
+1617418692116	Rename field 'scoreButton'
+1617418699413	Rename field 'nextButton'
+1617418705367	Rename field 'pauseButton'
+1617418712314	Rename field 'resetButton'
+1617421566283	Delete element
+1617421744857	Rename resource 'icon16.jpg'
+1617425525784	Delete element
+1617426068422	Move files
+1617441954762	Rename package 'Game'
+1617441964715	Rename package 'Game.bg'
+1617441970478	Rename package 'Game.icon'
+1617442283926	Move package
+1617442306664	Move packages
+1617442484230	Copy packages

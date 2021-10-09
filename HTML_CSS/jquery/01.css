@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.dangky,
+.dangnhap {
+  width: 392px;
+  height: 600px;
+  background: #f7f7f7;
+  border: 1px solid gray;
+  padding: 20px;
+  position: fixed;
+  top: 10px;
+  left: 25%;
+  transform: translateX(50%);
+}
+.nutso1,
+.nutso2 {
+  float: right;
+}
+.nuttat1,
+.nuttat2 {
+  display: block;
+}

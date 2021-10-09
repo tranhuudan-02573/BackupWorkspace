@@ -1,0 +1,48 @@
+package gui.Panel;
+
+public class MainPanel extends JPanel implements ICommon {
+	  private JButton btnCount;
+	  private JLabel lbCount;
+	  private int count;
+	 
+	  public MainPanel {
+	    count = 0;
+	    initComp();
+	    addComp();
+	    addEvent();
+	  }
+	 
+	  @Override
+	  public void initComp() {
+	    // cài đặt ban đầu cho Panel
+	    setLayout(null);
+	  }
+	 
+	  @Override
+	  public void addComp() {
+	    // cài đặt và thêm Button btnCount vào Panel
+	    btnCount = new JButton();
+	    btnCount.setText("Click");
+	    btnCount.setSize(100, 50);
+	    btnCount.setLocation(10, 10);
+	    add(btnCount);
+	 
+	    // cài đặt và thêm Label lbCount vào Panel
+	    lbCount = new JLabel();
+	    lbCount.setText(count + "");
+	    lbCount.setSize(100, 50);
+	    lbCount.setLocation(120, 10);
+	    add(lbCount);
+	  }
+	 
+	  @Override
+	  public void addEvent() {
+	    btnCount.addActionListener(new ActionListener() {
+	      @Override
+	      public void actionPerformed(ActionEvent e) {
+	        count++;
+	        lbCount.setText(count);
+	      }
+	    });
+	  }
+	}

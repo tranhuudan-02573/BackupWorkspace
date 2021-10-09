@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    position: fixed;
+    
+    width: 100%;
+    line-height: 50px;
+    background-color: rgb(138, 48, 48);
+    color: #f8f9fa;
+    text-align: center;
+    font-size: 0.8em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  #nav-bar{
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 5px 5px grey;
+  }
+  
+  #header-img{
+    height: 100%;
+  }
+  
+  #nav-links{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    
+  }
+  
+  #nav-links a{
+    color: black;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 850px){
+    .hide-on-small{
+      display: none;
+    }
+  }
+  
+  main{
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #credit {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  #credit p {
+    font-weight: bold;
+    align-self: center;
+  }
+  
+  footer hr{
+    border-color: red;
+  }
+  
+  #features{
+    padding: 50px 0;
+    background: linear-gradient(to right, white , #d6e5ff);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .white-hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+    border-color: white;
+  }
+  
+  .content{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  
+  #about{
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #video{
+    width: 100%;
+  }
+  
+  #pricing{
+    padding: 50px 0;
+    background: linear-gradient(to right, white , #d6e5ff);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .price-container{
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .price-card{
+    width: 180px;
+    height: 300px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .price-card-header{
+    background-color: #008CBA;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    padding: 15px 0px;
+  }
+  
+  .price-card-content{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5em;
+  }
+  
+  .price-text{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  
+  .price-btn{
+    margin: 20px 0;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;    
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+  }
+  
+  .price-btn:hover{
+    background-color: #008CBA; /* Green */
+    color: white;
+  }
+  
+  @media (max-width: 600px){
+    .price-container{
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .price-card{
+      margin-bottom: 20px;
+    }
+  }
+  
+  #form{
+    padding: 50px 0;
+  }
+  
+  #email{
+    min-width: 200px;
+    padding: 5px 5px;
+    margin: 15px 0;
+  }
+  
+  #submit{
+    font-weight: bold;
+    background-color: rgb(239, 193, 76);
+    border: none;
+    cursor: pointer;
+    padding: 10px 32px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+  
+  #submit:hover{
+    background-color: rgb(255, 220, 132);
+  }
+  
+  #page-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #f5f5f5;
+    width: 100%;
+    padding: 20px 0;
+    align-items: center;
+  }
+  
+  #page-footer ul{
+    display: flex;
+    list-style: none;
+    
+  }
+  
+  #page-footer ul li{
+    padding: 0 10px;
+  }
+  
+  #page-footer a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  #page-footer span{
+    margin-top: 10px;
+    margin-right: 10px;
+    color: #444;
+  }

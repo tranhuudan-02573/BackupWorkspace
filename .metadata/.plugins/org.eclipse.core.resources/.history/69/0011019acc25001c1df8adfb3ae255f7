@@ -1,0 +1,22 @@
+package task4;
+
+public class TowerOfHanoi {
+
+	static void towerOfHanoi(int disk, char source, char dest, char aux_rod) {
+		if (disk == 1) {
+			System.out.println("Move disk 1 from rod " + source + " to rod " + dest);
+			return;
+		}
+		towerOfHanoi(disk - 1, source, aux_rod, dest);
+		System.out.println("Move disk " + disk + " from rod " + source + " to rod " + dest);
+		towerOfHanoi(disk - 1, aux_rod, dest, source);
+	}
+
+	// Driver code
+	public static void main(String args[]) {
+		int n = 4; // Number of disks
+		towerOfHanoi(n, 'A', 'C', 'B'); // A, B and C are names of rods
+	}
+}
+
+// This code is contributed by jyoti369

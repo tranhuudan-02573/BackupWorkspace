@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Side Menu Bar</title> -->
+    <link rel="stylesheet" href="05.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('i').click(function(){
+          $('ul').toggleClass('ul_show');
+          $('section').toggleClass('slide_image');
+        });
+        $('li').click(function(){
+          $(this).addClass('active').siblings().removeClass('active');
+        });
+      });
+
+    </script>
+
+  </head>
+  <body>
+    <ul>
+<li class="active"><a href="#">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#feedback">Feedback</a></li>
+<li><a class="contact" href="#contact">Contact</a></li>
+</ul>
+<section>
+      <i class="fas fa-bars"></i>
+      <div class="sec1">
+</div>
+<h2 id="about">
+About Section</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea nobis ut quos fugiat commodi doloribus aut dolore quibusdam fuga, excepturi modi ipsa rerum nisi qui repellat, facilis hic impedit praesentium? Doloremque autem hic blanditiis, tempora? Magni reiciendis fugit consequatur nam, voluptate laudantium voluptatum veritatis aut libero, cumque non quo possimus officiis a! Qui tempora tenetur, fuga quos at provident nihil nobis illum quibusdam. Nemo odit error nostrum, aliquid et quas in optio nesciunt tempore minus saepe architecto recusandae ipsam. Explicabo et rerum, iure odio! Amet ad sunt beatae vero corporis dicta sint provident laborum tenetur?</p>
+<div class="sec2">
+</div>
+<h2 id="portfolio">
+Portfolio Section</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea nobis ut quos fugiat commodi doloribus aut dolore quibusdam fuga, excepturi modi ipsa rerum nisi qui repellat, facilis hic impedit praesentium? Doloremque autem hic blanditiis, tempora? Magni reiciendis fugit consequatur nam, voluptate laudantium voluptatum veritatis aut libero, cumque non quo possimus officiis a! Qui tempora tenetur, fuga quos at provident nihil nobis illum quibusdam. Nemo odit error nostrum, aliquid et quas in optio nesciunt tempore minus saepe architecto recusandae ipsam. Explicabo et rerum, iure odio! Amet ad sunt beatae vero corporis dicta sint provident laborum tenetur?</p>
+<div class="sec3">
+</div>
+<h2 id="gallery">
+Gallery Section</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea nobis ut quos fugiat commodi doloribus aut dolore quibusdam fuga, excepturi modi ipsa rerum nisi qui repellat, facilis hic impedit praesentium? Doloremque autem hic blanditiis, tempora? Magni reiciendis fugit consequatur nam, voluptate laudantium voluptatum veritatis aut libero, cumque non quo possimus officiis a! Qui tempora tenetur, fuga quos at provident nihil nobis illum quibusdam. Nemo odit error nostrum, aliquid et quas in optio nesciunt tempore minus saepe architecto recusandae ipsam. Explicabo et rerum, iure odio! Amet ad sunt beatae vero corporis dicta sint provident laborum tenetur?</p>
+<div class="sec4">
+</div>
+<h2 id="services">
+Services Section</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea nobis ut quos fugiat commodi doloribus aut dolore quibusdam fuga, excepturi modi ipsa rerum nisi qui repellat, facilis hic impedit praesentium? Doloremque autem hic blanditiis, tempora? Magni reiciendis fugit consequatur nam, voluptate laudantium voluptatum veritatis aut libero, cumque non quo possimus officiis a! Qui tempora tenetur, fuga quos at provident nihil nobis illum quibusdam. Nemo odit error nostrum, aliquid et quas in optio nesciunt tempore minus saepe architecto recusandae ipsam. Explicabo et rerum, iure odio! Amet ad sunt beatae vero corporis dicta sint provident laborum tenetur?</p>
+<div class="sec5">
+</div>
+<h2 id="feedback">
+Feedback Section</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea nobis ut quos fugiat commodi doloribus aut dolore quibusdam fuga, excepturi modi ipsa rerum nisi qui repellat, facilis hic impedit praesentium? Doloremque autem hic blanditiis, tempora? Magni reiciendis fugit consequatur nam, voluptate laudantium voluptatum veritatis aut libero, cumque non quo possimus officiis a! Qui tempora tenetur, fuga quos at provident nihil nobis illum quibusdam. Nemo odit error nostrum, aliquid et quas in optio nesciunt tempore minus saepe architecto recusandae ipsam. Explicabo et rerum, iure odio! Amet ad sunt beatae vero corporis dicta sint provident laborum tenetur?</p>
+<div class="sec6">
+</div>
+<h2 id="contact">
+Contact Section</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet asperiores error tempora ea nobis ut quos fugiat commodi doloribus aut dolore quibusdam fuga, excepturi modi ipsa rerum nisi qui repellat, facilis hic impedit praesentium? Doloremque autem hic blanditiis, tempora? Magni reiciendis fugit consequatur nam, voluptate laudantium voluptatum veritatis aut libero, cumque non quo possimus officiis a! Qui tempora tenetur, fuga quos at provident nihil nobis illum quibusdam. Nemo odit error nostrum, aliquid et quas in optio nesciunt tempore minus saepe architecto recusandae ipsam. Explicabo et rerum, iure odio! Amet ad sunt beatae vero corporis dicta sint provident laborum tenetur?</p>
+<div class="sec7">
+</div>
+</section>
+
+  </body>
+</html>

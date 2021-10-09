@@ -1,0 +1,123 @@
+package Calculator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ActionCalculator {
+
+	public static void main(String[] args) {
+		System.out.println(ActionCalculator.createOptimalStr("27+1*49+3").toString());
+		System.out.println(ActionCalculator.result("27+1*49+3"));// kết quả =79
+			ActionCalculator.getLocalMark("27+3*44");
+			System.out.println(ActionCalculator.getLocalMark("*44"));
+			System.out.println(ActionCalculator.checkPlusMinus(1, "49"));
+	}
+
+	// kiem tra dau
+	public static boolean checkMark(String a) {
+		return (a == "+") || (a == "-") || (a == "*") || (a == "/") || (a == ".");
+	}
+
+	// tao mang toi uu,
+	// VD "27+3333*49" => ["27","+3333","*","49"]
+	public static ArrayList<String> createOptimalStr(String st) {
+		/*
+		 * Đây là phiên bản thứ 4 !
+		 * 
+		 */
+		ArrayList<String> opStr = new ArrayList<String>();
+		int countNext = getLocalMark(st);// Tìm vị trí dấu đầu tiên, trả về giá trị khác vị trí đầu tiên
+
+		while (countNext != -1) {// khi countNext = -1 có nghĩa là không còn "dâu" nào trong chuỗi => dừng lặp
+			if (checkPlusMinus(countNext, st)) {// Nếu "dấu đó là "+" or "-" thì
+				opStr.add(st.substring(0, countNext));// cắt số trước "dấu" luu vào mảng kết quả
+				st = st.substring(countNext);// tạo chuỗi mới đã xóa phần tử đã cắt
+			} else {// nếu dấu là "*" or "/" thì
+				opStr.add(st.substring(0, countNext)); // cắt số trước "dấu" luu vào mảng kết quả
+				opStr.add(st.substring(countNext, countNext + 1));// cắt "dấu" lưu vào mảng kết quả
+				st = st.substring(countNext + 1); // tạo chuỗi mới đã xóa phần tử đã cắt
+			}
+			countNext = getLocalMark(st);// tìm lại vị trí countNext cho chuỗi mới xóa các phần tử đã cắt
+
+		}
+		opStr.add(st);// khi hết "dấu" => countNext =-1 => vòng while đóng lại
+		// => thừa 1 chuỗi số cuối cùng chưa lưu vào kết quả, lưu dãy số đó vào mảng kết
+		// quả
+		return opStr;
+	}
+
+	private static boolean checkPlusMinus(int countNext, String st) {
+		// Lấy "dấu" đó ra bằng hàm Substring và kiểm tra nó có phải dấu "+" or "-"
+		// không,
+		String s = st.substring(countNext, countNext + 1);
+		return s.equals("+") || s.equals("-");
+	}
+
+	private static int getLocalMark(String st) {
+		// Kiểm tra vị trí của các "dấu" trong chuỗi,
+		// trả về kí tự dấu đầu tiên tính từ vị trí thứ 1 trở đi(nghĩa là ta không xét
+		// vị trí đầu tiên)
+		String[] a = { "+", "-", "*", "/" };
+		int value = st.length();
+		// VD "27+3333*49" trả về 2, "-27+3333*49" trả về 2, không tính kí tự đầu tiên
+		// khi kiểm tra đấu
+		for (int i = 0; i < 4; i++) {
+			if ((value > st.indexOf(a[i], 1)) && (st.indexOf(a[i], 1) != -1)) {
+				value = st.indexOf(a[i], 1);
+
+			}
+			// điều kiện tối quan trọng khi không còn "dấu" nào nữa thì trả về -1,
+			// đây là dk để kết thúc vòng while ở trên <createOptimalStr(String st)>
+
+			if ((st.indexOf(a[0], 1) == -1) && (st.indexOf(a[1], 1) == -1) && (st.indexOf(a[2], 1) == -1)
+					&& (st.indexOf(a[3], 1) == -1)) {
+				value = -1;
+			}
+		}
+			System.out.println(value);
+		return value;
+	}
+
+	public static double result(String st) {
+		ArrayList<String> opStr = new ArrayList<String>();
+		ArrayList<Double> R = new ArrayList<Double>();
+		opStr = ActionCalculator.createOptimalStr(st);
+//			System.out.println(opStr);
+		/*
+		 * Kiểm tra các dấu "*" or "/" trong arraylist nếu gặp tính tích or thương của 2
+		 * số gần kề "dấu" rồi đưa lên array kết quả (R)
+		 */
+
+		for (int i = 0; i < opStr.size(); i++) {
+			// Tích
+			if (opStr.get(i).equals("*")) {
+				R.add(Double.parseDouble(opStr.get(i - 1)) * Double.parseDouble(opStr.get(i + 1)));
+				opStr.set(i, "0");
+				opStr.set(i - 1, "0");
+				opStr.set(i + 1, "0");
+			}
+			// Thương
+			if (opStr.get(i).equals("/")) {
+				R.add(Double.parseDouble(opStr.get(i - 1)) / Double.parseDouble(opStr.get(i + 1)));
+				opStr.set(i, "0");
+				opStr.set(i - 1, "0");
+				opStr.set(i + 1, "0");
+			}
+		}
+		// Đưa hết tất cả các phần từ còn lại trong Array(opStr) lên Array kết quả (r)
+		for (int i = 0; i < opStr.size(); i++) {
+			R.add(Double.parseDouble(opStr.get(i)));
+		}
+
+		// Tính tổng Array kết quả (R);
+		double sum = 0;
+		System.out.println(R);
+		for (int i = 0; i < R.size(); i++) {
+			sum += R.get(i);
+		}
+		return sum;
+
+	}
+}

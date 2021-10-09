@@ -1,0 +1,34 @@
+{
+  "courses": [
+    {
+      "name": "PHPadwhsui``",
+      "description": "hfsdbshfjskdnfuhsfejehkndseji",
+      "id": 5
+    },
+    {
+      "name": "java",
+      "description": "back-end, android",
+      "id": 6
+    },
+    {
+      "name": "dart",
+      "description": "flutter",
+      "id": 7
+    },
+    {
+      "name": "SQL",
+      "description": "back-end",
+      "id": 8
+    },
+    {
+      "name": "HTML-CSS",
+      "description": "front-end",
+      "id": 9
+    },
+    {
+      "name": "hj",
+      "description": "ghk",
+      "id": 10
+    }
+  ]
+}

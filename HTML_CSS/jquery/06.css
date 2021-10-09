@@ -1,0 +1,43 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+body{
+    background: wheat;
+    height: 100%;
+    width: 100%;
+}
+.nutmora{
+    width: 200px;
+    margin: auto;
+    margin-top: 300px;
+        text-align: center;
+        padding: 15px 15px;
+        font-family: segoe ui light;
+        color: white;
+        cursor: pointer;
+    transition: 0.4s;
+    border-radius: 50px;
+    background: red;
+    }
+.nutmora:hover{
+background: lightblue;
+}
+.menutrai{
+/* transform: translateX(0px); */
+
+    left: -500px;
+    top: 0px;
+    position: fixed;
+    width: 400px;
+    height: 100%;
+    background: lightblue;
+    transition: ease 0.4s;
+}
+html{
+    width: 100%;
+    height: 100%;
+}
+.divao{
+    left: 0;
+}
+.xanh{
+    background: lightblue;
+}

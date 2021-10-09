@@ -1,0 +1,249 @@
+package MyPaint;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+
+public class MainPaint extends JFrame implements ActionListener {
+	ToolBar toolBar;
+	DrawingPanel drawingPanel;
+	StatusBar statusBar;
+	Slider slider;
+	ImageIcon icon;
+	JCheckBoxMenuItem cbToolBar, cbCommand, cbDrawShape;
+	DrawShape drawShape;
+	JMenuItem item;
+	JMenu menu;
+	JMenuBar menuBar;
+	JTabbedPane tabPane;
+	JSplitPane splitPane;
+
+	public MainPaint() {
+		super("My Painter");
+		menuBar = new JMenuBar();
+		this.setJMenuBar(menuBar);
+		menu = new JMenu("File");
+		item = new JMenuItem("Open");
+		menu.add(item);
+		item.setActionCommand("Open");
+		item.addActionListener(this);
+		item = new JMenuItem("save");
+		item.setActionCommand("Open");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Exit");
+		item.setActionCommand("Exit");
+		item.addActionListener(this);
+		menu.add(item);
+		menuBar.add(menu);
+
+		menu = new JMenu("Edit");
+		item = new JMenuItem("Select all");
+		item.setActionCommand("Select all");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Deselect");
+		item.setActionCommand("Deselect");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Clear select");
+		item.setActionCommand("Clear select");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Clear All");
+		item.setActionCommand("ClearAll");
+		item.addActionListener(this);
+		menu.add(item);
+		menuBar.add(menu);
+
+		menu = new JMenu("View");
+		cbToolBar = new JCheckBoxMenuItem("ToolBar");
+		cbToolBar.setSelected(true);
+		cbToolBar.addActionListener(this);
+		menu.add(cbToolBar);
+		cbCommand = new JCheckBoxMenuItem("Command Line");
+		cbCommand.setSelected(true);
+		cbCommand.addActionListener(this);
+		menu.add(cbCommand);
+		cbDrawShape = new JCheckBoxMenuItem("Draw Shape");
+		cbDrawShape.setSelected(true);
+		cbDrawShape.addActionListener(this);
+		menu.add(cbDrawShape);
+		menuBar.add(menu);
+
+		menu = new JMenu("Format");
+		item = new JMenuItem("Color shape");
+		item.setActionCommand("Color Shape");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Background color");
+		item.setActionCommand("Background color");
+		item.addActionListener(this);
+		menu.add(item);
+		menuBar.add(menu);
+
+		menu = new JMenu("Draw");
+
+		item = new JMenuItem("Line");
+		item.setActionCommand("Line");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Square");
+		item.setActionCommand("Square");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Square Triangle");
+		menu.add(item);
+		item.setActionCommand("SquareTriangle");
+		item.addActionListener(this);
+		item = new JMenuItem("Rectangle");
+		menu.add(item);
+		item.setActionCommand("Rectangle");
+		item.addActionListener(this);
+		item = new JMenuItem("Iosceles Triangle");
+		item.setActionCommand("IoscelesTriangle");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Ellipse");
+		item.setActionCommand("Ellipse");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Circle");
+		item.setActionCommand("Circle");
+		item.addActionListener(this);
+		menu.add(item);
+		menuBar.add(menu);
+
+		menu = new JMenu("Modify");
+		item = new JMenuItem("Move");
+		item.setActionCommand("Move");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Eraser");
+		item.setActionCommand("Eraser");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Copy");
+		item.setActionCommand("Copy");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Cut");
+		item.setActionCommand("Cut");
+		item.addActionListener(this);
+		menu.add(item);
+		item = new JMenuItem("Paste");
+		item.setActionCommand("Paste");
+		item.addActionListener(this);
+		menu.add(item);
+		menuBar.add(menu);
+
+		menu = new JMenu("Help");
+		menu.setActionCommand("Help");
+		menu.addActionListener(this);
+		menuBar.add(menu);
+		menu = new JMenu("About");
+		menu.setActionCommand("About");
+		menu.addActionListener(this);
+		menuBar.add(menu);
+		setFocusable(true);
+		this.setFocusCycleRoot(true);
+		statusBar = new StatusBar();
+		drawingPanel = new DrawingPanel(statusBar);
+		toolBar = new ToolBar(drawingPanel, statusBar, this);
+		slider = new Slider(drawingPanel, statusBar);
+		drawShape = new DrawShape(drawingPanel, statusBar, toolBar);
+
+		tabPane = new JTabbedPane();
+		tabPane.add("da", drawingPanel);
+		tabPane.add("ddsada", drawingPanel);
+
+		JSplitPane topSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, drawShape, tabPane);
+
+		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topSplitPane, statusBar);
+		splitPane.setDividerLocation(300);
+
+		getContentPane().add(toolBar, BorderLayout.NORTH);
+
+		getContentPane().add(splitPane, BorderLayout.CENTER);
+		setSize(1200, 800);
+		((JComponent) getContentPane()).setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+
+	}
+
+	public static void main(String[] args) {
+		new MainPaint();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getActionCommand() == "Delete")
+			statusBar.command2.setText("nhấp chuột lên trên hình để xóa hình đó");
+		if (e.getActionCommand() == "Fill")
+			statusBar.command2.setText("nhấp chuột vào trong hình để xóa hình đó");
+		if (e.getActionCommand() == "Eraser")
+			statusBar.command2.setText("nhấn giữ chuột và di chuyển để xóa phần đó");
+		if (e.getActionCommand() == "Move")
+			statusBar.command2.setText("nhấp chuột vào trong hình đó giữ và di chuyển để đến được nơi mong muốn");
+		if (e.getActionCommand() == "Line" || e.getActionCommand() == "Square"
+				|| e.getActionCommand() == "SquareTriangle" || e.getActionCommand() == "Rectangle"
+				|| e.getActionCommand() == "IoscelesTriangle" || e.getActionCommand() == "Ellipse"
+				|| e.getActionCommand() == "Circle") {
+			statusBar.command2.setText("giữ và di chuyển chuột để vẽ");
+		}
+		if (e.getActionCommand() == "Background color") {
+			statusBar.command2.setText("nhấn vào item này để set màu đang chọn cho draw board");
+		}
+		if (e.getActionCommand() == "Color Shape") {
+			statusBar.command2.setText("nhấp chuột vào trong hình cần tô màu đang chọn");
+		}
+		if (e.getActionCommand() == "ClearAll") {
+			statusBar.command2.setText("nhấp button này để xóa hết các hình");
+		}
+
+		// TODO Auto-generated method stub
+		String com = e.getActionCommand();
+		drawingPanel.setShapeType(com);
+		if (e.getActionCommand() == "Background color") {
+			drawingPanel.colorBackground = toolBar.color;
+		}
+		if (!cbCommand.isSelected()) {
+			statusBar.setVisible(false);
+		} else
+			statusBar.setVisible(true);
+		if (!cbToolBar.isSelected()) {
+			toolBar.setVisible(false);
+		} else
+			toolBar.setVisible(true);
+		if (!cbDrawShape.isSelected()) {
+			drawShape.setVisible(false);
+		} else
+			drawShape.setVisible(true);
+		if (e.getActionCommand() == "ClearAll") {
+			drawingPanel.shapes.removeAll(drawingPanel.shapes);
+			drawingPanel.repaint();
+			drawingPanel.selected = false;
+		}
+	}
+
+}

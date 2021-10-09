@@ -1,0 +1,21 @@
+a.chu{
+    position: relative;
+    font-family: segoe ui;
+    text-decoration: none;
+
+}
+
+a.chu:after{
+    content: ''; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: aqua;
+    transition: 0.3s;
+}
+a.chu:hover:after{
+    width: 100%;
+
+}

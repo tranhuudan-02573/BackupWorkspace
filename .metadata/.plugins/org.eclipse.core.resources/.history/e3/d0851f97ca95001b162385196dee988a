@@ -1,0 +1,505 @@
+package FlipPokeGame;
+
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.Timer;
+import javax.swing.event.AncestorListener;
+
+public class FlipPoke2 extends JFrame implements ActionListener {
+	// count la bien phan biet lan bam
+	// id la vi tri hinh anh duoc click vao
+	// preX, preY la vi tri x y cua hinh anh dau tien duoc dem di so sanh
+	// X, Y la vi tri x y cua hinh cua thu 2 duoc dem di so sanh
+	private int count = 0, idFirstImage, firstX, firstY, secondX, secondY;
+	// level la man choi
+	// hit la cac cap bai
+	private int level = 0;
+	private int hit = 0;
+	// chieu doc
+	private int sizeX[] = { 2, 2, 2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 7 };
+	// chieu ngang
+	int sizeY[] = { 3, 4, 6, 6, 6, 7, 8, 10, 10, 12, 14, 16, 14, 16, 14 };
+	int TIME[] = { 10, 20, 30, 50, 65, 80, 100, 120, 140, 150 }; // mànt 1 kết thúc sau 10 giây
+	int maxTime = 50, time = 0;
+	int rows = sizeX[0], cols = sizeY[0];
+	// progressbar
+	JProgressBar timeBar;
+	// nut
+	int maxXY = 1000;
+	JButton buttons[][] = new JButton[maxXY][maxXY];
+	// kick
+	boolean checkClick[][] = new boolean[maxXY][maxXY];
+	// hinh anh
+	int idImages[][] = new int[maxXY][maxXY];
+	JButton scoreButton, nextButton, pauseButton, resetButton;
+	JPanel imagePanel, scorePanel, panelTopRight, panelBot, FuncPanel, panelTop, panelTopLeft;
+	Container container;
+	Timer checkingTimer, tictacTimer, secondBarTimer;
+	Font font = new Font("Almanac MT", 1, 20);
+	JLabel scoreLabel, timeLabel;
+	boolean paused = false;
+	int tictac = 100;
+	int second = TIME[0];
+	String seconds_string = String.format("%02d", second);
+	String tictiac_string = String.format("%02d", tictac);
+	int images = 90;
+	int N = rows * cols;
+
+	public FlipPoke2(int k, int score) {
+		this.setTitle("Flip Poke Game");
+		// level k
+		level = k;
+		second = TIME[level];
+//		container = init(k, score);
+		// thoi gian lat va check hinh anh thu nhat khi lat hinh anh thu hai
+		checkingTimer = new Timer(100, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// khi thuc hien hanh dong nay timer se tu dong bat
+				check2Image();
+				// khi het 250/1000 giay thi phuong thuc open se khong duoc thuc thi nua timer
+				// bi dong lai
+				checkingTimer.stop();
+			}
+		});
+		secondBarTimer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				second--;
+				// khi time tang len theo thoi gian bang maxTime thi se cho time2 dung lai
+
+				// timer2 bi dung lai
+				time += 1;
+				// set value cho progressBar
+				// no se chay giam dan den khi maxTime cua man do tru di time tang theo thoi
+				// gian = 0
+				timeBar.setValue(second);
+				// khi time tang len theo thoi gian bang maxTime thi se cho time2 dung lai
+				if (maxTime < time || Integer.parseInt(scoreButton.getText()) < 0 || second < 0) {
+					// timer2 bi dung lai
+					tictacTimer.stop();
+					secondBarTimer.stop();
+					// goi phuong thuc showDialogNewGame() de hien thi thong bao
+					showDialogNewGame(
+							"bạn đã thua.\n" + "Điểm: " + scoreButton.getText() + "\n" + "Bạn có muốn chơi lại không?",
+							"Thông báo");
+				}
+				seconds_string = String.format("%02d", second);
+				timeLabel.setText(seconds_string + ":" + tictiac_string);
+			}
+		});
+		// thoi gian chay cua progressBar
+		tictacTimer = new Timer(1, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tictac--;
+				if (tictac == 0) {
+					tictac += 100;
+				}
+				tictiac_string = String.format("%02d", tictac);
+				timeLabel.setText(seconds_string + ":" + tictiac_string);
+				// sau 100/1000 giay thi bien time se tang len 1 don vi
+
+			}
+		});
+		// so hang
+		rows = sizeX[k];
+		// so cot
+		cols = sizeY[k];
+		// thoi gian hoan thanh man do
+		maxTime = TIME[k];
+		// reset time
+		time = 0;
+		container = this.getContentPane();
+		imagePanel = new JPanel() {
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(new ImageIcon(new ImageIcon("./src/FlipPokeGame/icon100.jpg").getImage()
+						.getScaledInstance(imagePanel.getWidth(), imagePanel.getHeight(), Image.SCALE_SMOOTH))
+								.getImage(),
+						0, 0, null);
+
+			}
+		};
+		imagePanel.setLayout(new GridLayout(rows, cols));
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				buttons[i][j] = new JButton();
+				buttons[i][j].setBorder(BorderFactory.createLineBorder(Color.pink, 1));
+				buttons[i][j].setFocusable(false);
+				imagePanel.add(buttons[i][j]);
+//							bt[i][j].setBackground(null);
+				// set actionCommand cho all nut voi vi tri hien tai cua nut do
+				buttons[i][j].setActionCommand(i + "" + j);
+				// add action click vao cho all nut
+				buttons[i][j].addActionListener(this);
+				// set background cho all nut
+//						buttons[i][j].setBackground(Color.black);
+				// random so nguyen tu 1 toi 90 cho all phan tu trong mang do
+				idImages[i][j] = (int) (Math.random() * 2 + 1);
+				// set icon mac dinh cho cac button la 1 hinh anh up xuong
+				buttons[i][j].setIcon(getIcon(0));
+				// cho phep tat ca cac nut duoc click vao
+				checkClick[i][j] = true;
+				buttons[i][j].setBackground(Color.white);
+			}
+		}
+		panelTopLeft = new JPanel();
+		panelTopLeft.setLayout(new GridLayout(1, 1));
+		panelTop = new JPanel();
+		panelTop.setLayout(new BoxLayout(panelTop, BoxLayout.X_AXIS));
+		scorePanel = new JPanel();
+		scorePanel.setLayout(new FlowLayout());
+		scorePanel.setBackground(Color.pink);
+		// set string cho nut do chinh la score
+		scoreButton = new JButton(String.valueOf(score));
+		scoreButton.setForeground(Color.pink);
+		scoreButton.setFont(font);
+		scoreButton.setBackground(Color.white);
+		// bo vien cua pham vi string di
+		scoreButton.setFocusable(false);
+		scoreLabel = new JLabel("Score: ");
+		scoreLabel.setForeground(Color.white);
+		scoreLabel.setFont(font);
+		scorePanel.add(scoreLabel);
+		scorePanel.add(scoreButton);
+		FuncPanel = new JPanel();
+		FuncPanel.setLayout(new FlowLayout());
+		FuncPanel.setBackground(Color.pink);
+		nextButton = new JButton("Next");
+		pauseButton = new JButton("Pause");
+		nextButton.setFont(font);
+		pauseButton.setFont(font);
+		pauseButton.setVisible(false);
+		pauseButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!paused) {
+					paused = true;
+					secondBarTimer.stop();
+					tictacTimer.stop();
+					pauseButton.setText("Cont");
+				} else {
+					paused = false;
+					secondBarTimer.start();
+					tictacTimer.start();
+					pauseButton.setText("Pause");
+				}
+			}
+		});
+		resetButton = new JButton("Reset");
+		resetButton.setFont(font);
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resGame();
+			}
+		});
+		timeLabel = new JLabel();
+		panelTopLeft.add(timeLabel);
+		timeLabel.setText(seconds_string + ":" + tictiac_string);
+		timeLabel.setFont(font);
+		panelTop.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+		timeLabel.setOpaque(true);
+		timeLabel.setForeground(Color.pink);
+		timeLabel.setBackground(Color.white);
+		timeLabel.setBorder(BorderFactory.createLineBorder(Color.pink, 1));
+		timeLabel.setHorizontalAlignment(JLabel.CENTER);
+		resetButton.setFocusable(false);
+		resetButton.setForeground(Color.pink);
+		resetButton.setBackground(Color.white);
+		// bo vien cua pham vi string di
+		nextButton.setFocusable(false);
+		nextButton.setBackground(Color.white);
+		pauseButton.setBackground(Color.white);
+		pauseButton.setForeground(Color.pink);
+		nextButton.setForeground(Color.pink);
+		nextButton.setVisible(false);
+		// bo vien cua pham vi string di
+		pauseButton.setFocusable(false);
+		FuncPanel.add(pauseButton);
+		FuncPanel.add(resetButton);
+		FuncPanel.add(nextButton);
+		panelBot = new JPanel();
+		panelBot.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+		panelBot.setLayout(new BoxLayout(panelBot, BoxLayout.X_AXIS));
+		panelBot.add(scorePanel, BorderLayout.WEST);
+		panelBot.add(FuncPanel);
+		timeBar = new JProgressBar(0, maxTime);
+		timeBar.setValue(maxTime);
+		timeBar.setForeground(Color.pink);
+		timeBar.setStringPainted(true);
+		timeBar.setFont(font);
+		timeBar.setBorder(null);
+		panelTopRight = new JPanel();
+		panelTopRight.setLayout(new GridLayout(1, 1));
+		panelTopRight.add(timeBar);
+		panelTop.add(panelTopLeft);
+		panelTop.add(panelTopRight);
+
+		createMatrix();
+		showMatrix();
+		// add cac component vao container
+		container.add(panelTop, "North");
+		container.add(imagePanel, "Center");
+		container.add(panelBot, "South");
+		this.setVisible(true);
+		this.setSize(cols * 150, rows * 200 + 100);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+
+	}
+
+	// ham check lan click
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (!paused) {
+			// click vao hinh thoi gian bat dau chay
+			int i, j;
+			// lay string khi setActionCommand
+			String s = e.getActionCommand();
+			// vi tri cot cua nut do
+			i = Integer.parseInt(s.substring(0, 1));
+			// vi tri dong cua nut do
+			j = Integer.parseInt(s.substring(1, s.length()));
+			buttons[i][j].setIcon(getIcon(idImages[i][j]));
+			if (checkClick[i][j]) {// kiem tra click chua
+				pauseButton.setVisible(true);
+				secondBarTimer.start();
+				tictacTimer.start();
+				// cho phep click hinh do 1 lan
+				checkClick[i][j] = false;
+				// hinh dau tien
+				if (count == 0) {
+					// gan vi tri hinh anh do cho id
+					idFirstImage = idImages[i][j];
+					firstX = i;
+					firstY = j;
+					// hinh thu 2
+				} else {
+					secondX = i;
+					secondY = j;
+					// set thoi gian up lai
+					checkingTimer.start();
+				}
+				// tro ve hinh anh dau tien
+				// ban dau count = 0 thi se roi vao truong hop count == 0 gan id tai vi tri cau
+				// hinh anh do sau do gan toa do x y cho bien o ngoai nhan duoc
+				count = 1 - count;
+				// count = 1 -0 = 1 khi nay se roi vao truong hop count = 1 gan toa do cua lan
+				// bam thu 2 do cho bien ngoai nhan duoc
+				// cu nhu the no se chay 0 1 0 1 de phan biet duoc lan bam
+			}
+
+		}
+	}
+
+	// phuong thuc lat the
+	public void check2Image() {
+		// neu 2 hinh giong nhau
+		if (idFirstImage == idImages[secondX][secondY]) {
+			// thi set 2 hinh do thanh 1 hinh khac
+			// reset gia tri cua mang tai hinh anh do
+			buttons[secondX][secondY].setBorder(null);
+			buttons[firstX][firstY].setBorder(null);
+			// thi set 2 hinh do thanh 1 hinh khac
+			// khong duoc click cho do nua
+			checkClick[secondX][secondY] = checkClick[firstX][firstY] = false;
+			buttons[secondX][secondY].setVisible(false);
+			buttons[firstX][firstY].setVisible(false);
+			// cong diem
+			scoreButton.setText(String.valueOf(Integer.parseInt(scoreButton.getText()) + 5));
+			// cap hinh duoc tang len
+			hit++;
+			time -= 1;
+			second++;
+			timeBar.setValue(maxTime - time);
+			// neu cac cap hinh duoc lat het
+			if (hit == rows * cols / 2) {
+				// thi ko check hinh anh nua
+				checkingTimer.stop();
+				secondBarTimer.stop();
+				// progressbar dung lai
+				secondBarTimer.stop();
+				tictacTimer.stop();
+				nextButton.setVisible(true);
+				pauseButton.setVisible(false);
+				nextButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// qua man moi
+						nextGame();
+					}
+				});
+			}
+			// neu 2 hinh do ko giong nhau
+		} else {
+
+			// set 2 anh do up lai
+			// noi cach khac set 2 hinh do ve lai hinh up
+			buttons[firstX][firstY].setIcon(getIcon(0));
+			buttons[secondX][secondY].setIcon(getIcon(0));
+			// 2 hinh do duoc phep chon lai
+			checkClick[firstX][firstY] = true;
+			checkClick[secondX][secondY] = true;
+			// tru diem
+			scoreButton.setText(String.valueOf(Integer.parseInt(scoreButton.getText()) - 5));
+			// tru thoi gian
+			time += 1;
+			second--;
+			timeBar.setValue(maxTime - time);
+		}
+	}
+
+	public void createMatrix() {
+		// mang b,c co so phan tu la 96
+		int b[] = new int[N + images];
+		int c[] = new int[N + images];
+		// 0 < 90
+		for (int i = 0; i < images; i++) {
+			b[i] = i;// 0 ts 89
+			// random 90 lan
+			c[i] = (int) (Math.random() * 1000000000);// xao tron 90 hinh anh r lay no ra
+			// random khi lay hinh anh
+		}
+
+		for (int i = 0; i < images - 1; i++) {// i 0 ts 88
+			for (int j = i + 1; j < images; j++) { // j 1 ts 89
+				if (c[i] > c[j]) {
+					int tmp = b[i];
+//					System.out.println(tmp);//0
+					b[i] = b[j];
+//					System.out.println(b[i]);//2
+					b[j] = tmp;
+//					System.out.println(b[j]);//0
+					tmp = c[i];
+//					System.out.println(tmp);
+					c[i] = c[j];
+//					System.out.println(c[i]);
+					c[j] = tmp;
+//					System.out.println(c[j]);
+
+				}
+			}
+		}
+		// lam trong mang co 2 hinh giong nhau
+		// nhân đôi m * n / 2 của số đầu của dãy b.
+		// sắp xếp random dãy b từ 0 đến m * n - 1 và đưa nó vào matrix a. chương trình
+		// đầy đủ cho đoạn tạo matrix a:
+		for (int i = N / 2; i < N; i++) { // 3 4 5
+			// 0 1 2
+			b[i] = b[i - N / 2];
+		}
+		// ham random xao tron cac vi tri hinh anh trong man choi
+		for (int i = 0; i < rows * cols; i++) {
+			c[i] = (int) (Math.random() * 1000000000);
+		}
+
+		for (int i = 0; i < N - 1; i++) {// i 0 < 4
+			for (int j = i + 1; j < N; j++) {// j 1 < 5
+				if (c[i] > c[j]) {
+//					System.out.println(c[i] > c[j]);
+					int tmp = b[i];
+					System.out.println(tmp);// 4
+					b[i] = b[j];
+					System.out.println(b[i]);// 18
+					b[j] = tmp;
+					System.out.println(b[j]);// 4
+					tmp = c[i];
+//					System.out.println(tmp);
+					c[i] = c[j];
+//					System.out.println(c[i]);
+					c[j] = tmp;
+//					System.out.println(c[j]);
+				}
+			}
+		}
+		// reset array
+		N = 0;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				idImages[i][j] = b[N++];
+//				System.out.println(b[N++]);
+			}
+		}
+
+	}
+
+	private void showMatrix() {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++)
+				System.out.print("\t" + idImages[i][j]);
+			System.out.println();
+		}
+		System.out.println();
+	}
+
+	// lay hinh ra
+	// lay icon thu n ra // chi dc 1 icon
+	private Icon getIcon(int index) {
+		Image image = new ImageIcon(getClass().getResource("/Game/icon/icon" + index + ".png")).getImage()
+				.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
+		Icon icon = new ImageIcon(image.getScaledInstance(150, 200, image.SCALE_SMOOTH));
+		return icon;
+	}
+
+	// bat dau choi game
+	// goi class main ra // class jframe
+	public void newGame() {
+		this.dispose();
+		new FlipPoke2(0, 50);
+	}
+
+	public void resGame() {
+		this.dispose();
+		new FlipPoke2(level, Integer.parseInt(scoreButton.getText()) + (maxTime - time) / 50);
+		secondBarTimer.removeActionListener(this);
+	}
+
+//	 nextgame auto
+	public void nextGame() {
+		this.dispose();// clear man hinh
+		// reset class
+		new FlipPoke2(level + 1, Integer.parseInt(scoreButton.getText()) + (maxTime - time) / 50);
+	}
+
+	// thong bao khi lose game
+	public void showDialogNewGame(String message, String title) {
+		int select = JOptionPane.showOptionDialog(null, message, title, JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, null, null);
+		if (select == 0) {// bat dau lai
+			newGame();
+		} else {// exit game
+			System.exit(0);
+		}
+	}
+
+	public static void main(String[] args) {
+		new FlipPoke2(0, 50);
+	}
+}
+

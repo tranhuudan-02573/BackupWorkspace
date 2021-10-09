@@ -1,0 +1,14 @@
+	rec1 = new Rectangle2D.Double((int) Math.round(location.x + radius * Math.cos(2 * Math.PI * 0 / 4)) - 10,
+				(int) Math.round(location.y + radius * Math.sin(2 * Math.PI * 0 / 4)) - 10,
+				(int) (10 + stroke.getLineWidth()), (int) (10 + stroke.getLineWidth()));
+		rec2 = new Rectangle2D.Double((int) Math.round(location.x + radius * Math.cos(2 * Math.PI * 1 / 4)) - 10,
+				(int) Math.round(location.y + radius * Math.sin(2 * Math.PI * 1 / 4)) - 10,
+				(int) (10 + stroke.getLineWidth()), (int) (10 + stroke.getLineWidth()));
+		rec3 = new Rectangle2D.Double((int) Math.round(location.x + radius * Math.cos(2 * Math.PI * 2 / 4)) - 10,
+				(int) Math.round(location.y + radius * Math.sin(2 * Math.PI * 2 / 4)) - 10,
+				(int) (10 + stroke.getLineWidth()), (int) (10 + stroke.getLineWidth()));
+		rec4 = new Rectangle2D.Double((int) Math.round(location.x + radius * Math.cos(2 * Math.PI * 3 / 4)) - 10,
+				(int) Math.round(location.y + radius * Math.sin(2 * Math.PI * 3 / 4)) - 10,
+				(int) (10 + stroke.getLineWidth()), (int) (10 + stroke.getLineWidth()));
+		centerRec = new Rectangle2D.Double(location.x - 10, location.y - 10, (int) (10 + stroke.getLineWidth()),
+				(int) (10 + stroke.getLineWidth()));

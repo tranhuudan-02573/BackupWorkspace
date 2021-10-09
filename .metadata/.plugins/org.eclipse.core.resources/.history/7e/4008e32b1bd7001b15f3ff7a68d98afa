@@ -1,0 +1,31 @@
+package MyPaint;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+public interface IShape {
+	public void setSecondPoint(int x, int y);
+
+	public void draw(Graphics2D g);
+
+	public boolean contains(Point p);
+
+	public void fill(Graphics2D g);
+
+//
+	public int perimeter();
+
+	public int area();
+
+	public Point center();
+
+//	public Point getPointMax();
+
+//	public Point getPointMin();
+
+	public boolean lyingOn(Point p);
+
+	public void move(Point end);
+
+	public void setCommand(StatusBar statusBar);
+}

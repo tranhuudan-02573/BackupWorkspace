@@ -1,0 +1,117 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  html{
+    scroll-behavior: smooth;
+  }
+  body{
+    font-family: montserrat;
+  }
+  ul{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-left: -240px;
+    width: 240px;
+    background: #1e1e1e;
+    height: 100vh;
+    overflow-y: auto;
+    transition: all .3s;
+  }
+  ul li{
+    height: 65px;
+    outline: none;
+  }
+  ul li a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 70px;
+    font-size: 20px;
+    color: white;
+    padding-left: 10%;
+    background: #1e1e1e;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid black;
+    border-left: 5px solid transparent;
+  }
+  li a.contact{
+    border-bottom: 1px solid rgba(0,0,0,.5);
+  }
+  .active a{
+    color: #B93632;
+    border-left: 5px solid #B93632;
+    background: #1B1B1B;
+  }
+  section{
+    margin-left: 0px;
+    transition: all .3s;
+  }
+  i{
+    position: fixed;
+    margin: 20px 25px;
+    font-size: 40px;
+    color: orangered;
+    cursor: pointer;
+  }
+  .sec1{
+    margin-left: -20px;
+    background: url(https://www.publicdomainpictures.net/pictures/120000/velka/snowy-mountain-range.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  .sec2{
+    margin-left: -20px;
+    background: url(https://www.defenceconnect.com.au/images/cyber-hacker.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  .sec3{
+    margin-left: -20px;
+    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4NTa4ZaJ9cQGyY7Llz4qXuSQsegnFdaXIjg&usqp=CAU) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  .sec4{
+    margin-left: -20px;
+    background: url(https://miro.medium.com/max/11344/1*32h8ts3A-7XNr6A4Js87ng.jpeg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  .sec5{
+    margin-left: -20px;
+    background: url(https://media.istockphoto.com/photos/image-of-open-antique-book-on-wooden-table-with-glitter-overlay-picture-id873507500?k=6&m=873507500&s=612x612&w=0&h=V-IZYnO0CEdox-omaIxWshTXa382pjYs_3fSgqnH65M=) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  .sec6{
+    margin-left: -20px;
+    background: url(https://www.istockphoto.com/resources/images/FreeFileIllustration/RF-913475802_740x492.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  .sec7{
+    margin-left: -20px;
+    background: url(https://ts-mi.com/wp-content/uploads/2020/09/image-images.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  h2{
+    font-size: 40px;
+    padding: 15px 20px;
+  }
+  p{
+    padding: 0 20px 10px 20px;
+    text-align: justify;
+  }
+  .ul_show{
+    margin-left: 0px;
+  }
+  .slide_image{
+    margin-left: 260px;
+  }
+  

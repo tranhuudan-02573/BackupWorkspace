@@ -1,0 +1,68 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+
+h2.chuto {
+    color: white;
+    font-family: tahoma;
+    font-size: 190px;
+    margin-left: 14%;
+    padding-top: 610px;
+}
+
+.chapter1, .chapter2, .chapter3 {
+    height: 1000px;
+    background: url(https://cdn1.dotesports.com/wp-content/uploads/2020/10/09100252/among-us-3d-dani.jpg);
+    background-size: cover;
+}
+
+.noidung1, .noidung2, .noidung3 {
+    height: 800px;
+    padding: 50px 0;
+    text-align: center;
+    color: gray;
+}
+
+.home {
+    width: 100%;
+    height: 800px;
+    background: url(https://cdn1.dotesports.com/wp-content/uploads/2020/10/09100252/among-us-3d-dani.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.menutren ul {
+    margin-left: 18%;
+}
+
+.menutren a {
+    text-decoration: none;
+    display: block;
+    padding: 16px 18px;
+    color: black;
+    /* margin: auto; */
+    font-family: segoe ui-monospace;
+    font-weight: bold;
+    font-style:  none;
+}
+
+nav.menutren {
+    width: 100%;
+    height: 57px;
+    background: whitesmoke;
+    margin: auto;
+    position: fixed;
+    top: 0px;
+}
+
+.menutren ul li {
+    float: left;
+    list-style: none;
+}
+.nutlentren{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.45);
+    color: black;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,0 +1,25 @@
+1616597092716	Rename type 'ads'
+1616598274261	Rename type 'User'
+1616599674613	Rename package 'AbstractFactory'
+1616599798711	Delete element
+1616599799771	Delete element
+1616599924437	Rename package 'Sigleton2'
+1616638658979	Delete element
+1616638660067	Delete element
+1616638660889	Delete element
+1616638709937	Rename package 'FactoryMethod'
+1616638936313	Delete element
+1616638938075	Delete element
+1616638949019	Delete element
+1616639638198	Rename type 'Product'
+1616639775350	Rename type 'TypeProduct'
+1616640422673	Rename type 'Factory'
+1616640512699	Rename type 'Table'
+1616640519066	Rename type 'Chair'
+1616640523951	Rename type 'ProductType'
+1616640528420	Rename type 'SecondFactory'
+1616640874208	Delete element
+1616655669886	Rename type 'AChair'
+1616655677064	Rename type 'ATable'
+1616656045411	Rename method 'getChair'
+1616656064166	Rename method 'getTable'

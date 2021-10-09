@@ -1,0 +1,75 @@
+package MyPaint;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.util.Random;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComponent;
+import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.border.EmptyBorder;
+
+public class MainPaint extends JFrame implements ActionListener {
+	ToolBar toolBar;
+	DrawingPanel drawingPanel;
+	StatusBar statusBar;
+	Slider slider;
+	DrawShape drawShape;
+	JSplitPane splitPane;
+	AShape shapeCopy;
+	JPanel contentPane;
+	TabPane tabPane;
+	MenuBar menuBar;
+	CustomTab customTab;
+
+	public MainPaint() {
+
+		super("My Painter");
+		menuBar = new MenuBar(this);
+		this.setJMenuBar(menuBar);
+		setFocusable(true);
+		statusBar = new StatusBar();
+		drawingPanel = new DrawingPanel(statusBar);
+		tabPane = new TabPane(statusBar);
+		customTab = new CustomTab(tabPane);
+		toolBar = new ToolBar(tabPane, statusBar);
+		slider = new Slider(tabPane, statusBar);
+		drawShape = new DrawShape(tabPane, statusBar, toolBar);
+		JSplitPane topSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, drawShape, tabPane);
+		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topSplitPane, statusBar);
+		splitPane.setDividerLocation(500);
+		getContentPane().add(toolBar, BorderLayout.NORTH);
+		getContentPane().add(splitPane, BorderLayout.CENTER);
+		setSize(1200, 800);
+		((JComponent) getContentPane()).setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+		setResizable(false);
+
+	}
+
+	public static void main(String[] args) {
+		new MainPaint();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+	}
+
+}

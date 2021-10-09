@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="02.css">
+</head>
+
+<body>
+
+
+
+
+    <h1 id="title">Captain America Survey Form</h1>
+
+    <p id="description">Thank you for taking the time to help us improve the platform</p>
+
+    <div id="body">
+
+        <form id="survey-form">
+
+            <label id="name-label" for="name">
+                <p>Name:</p>
+            </label>
+
+            <input id="name" type="text" placeholder="Enter Your Name" required>
+
+
+            <label id="email-label" for="email">
+                <p>Email:</p>
+            </label>
+
+            <input id="email" type="email" placeholder="Enter Your Email" required>
+
+            <label id="number-label" for="number">
+                <p>Age:</p>
+            </label>
+
+            <input id="number" type="number" placeholder="Enter Your Age" min="12" max="50" required>
+
+            <p>Which Leadership Quality Do You Think make Captain America A Good Leader:</p>
+            <select id="dropdown">
+
+                <option value="default">Nothing</option>
+                <option value="He has a moral center.">He has a moral center.</option>
+                <option value="He stands for something.">He stands for something.</option>
+                <option value="He shuns the limelight.">He shuns the limelight.</option>
+                <option value="He protects his team.">He protects his team.</option>
+                <option value="He adapts to strengths and weaknesses.">He adapts to strengths and weaknesses.</option>
+
+            </select>
+
+            <p>Which Captain America Movie Do You Like The Most?</p>
+
+            <input type="radio" name="movie" value="1">Captain America: The First Avenger</input>
+            <br>
+            <input type="radio" name="movie" value="2">The Avengers</input>
+            <br>
+            <input type="radio" name="movies" value="3">Captain America: The Winter Soldier</input>
+            <br>
+            <input type="radio" name="movies" value="4">Avengers: Age of Ultron</input>
+            <br>
+            <input type="radio" name="movies" value="5">Captain America: Civil War</input>
+            <br>
+            <input type="radio" name="movies" value="6">Avengers: Infinity War</input>
+            <br>
+            <input type="radio" name="movies" value="7">Avengers: Endgame</input>
+
+            <p>Which Of The Other Avenger(Original 6) Do You Like?</p>
+
+            <input type="checkbox" name="avenger" value="1">Iron Man</input>
+            <br>
+            <input type="checkbox" name="avengers" value="2">Hawkeye </input>
+            <br>
+            <input type="checkbox" name="avengers" value="3">Hulk</input>
+            <br>
+            <input type="checkbox" name="avengers" value="4">Thor</input>
+            <br>
+            <input type="checkbox" name="avengers" value="5">Black Widow</input>
+            <br>
+
+            <textarea id="comment" rows="4" cols="40">Add Your Comment Here</textarea>
+            <br>
+            <input id="submit" type="submit" value="Submit">
+
+        </form>
+
+    </div>
+</body>
+
+</html>

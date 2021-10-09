@@ -1,0 +1,15 @@
+module baitapnhom {
+	exports Paint;
+	exports Calculator;
+	exports SnakeGame;
+	exports OOP4;
+	exports OOP5;
+	exports OOP2;
+	exports OOP3;
+	exports OOP1;
+	exports TrucXanh;
+	exports FlipPokeGame;
+	requires java.desktop;
+	
+	requires junit;
+}

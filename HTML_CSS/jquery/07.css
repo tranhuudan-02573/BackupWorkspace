@@ -1,0 +1,113 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+.apple{
+    width: 606px;
+    
+    perspective: 2000px;
+    height: 340px;
+    margin: 65px auto;
+    /* margin-top: 50px; */
+    /* transform: translateY(27px); */
+}
+.anhslide{
+    position: relative;
+    width: 100%;
+    height: 340px;
+    overflow: hidden;
+    text-align: center;
+    top: 0px;
+    background:black;
+}
+._1slide{
+    position: absolute;
+    top: 0px;
+    left: 0;
+width: 100%;
+opacity: 0;
+visibility: hidden;
+}
+.prev {
+    position: absolute;
+    z-index: 4;
+    top: 35%;
+    left: 30%;
+    cursor: pointer;
+    width: 39px;
+    height: 20px;
+}
+.next{position: absolute;top: 35%;right: 30%;z-index: 4;cursor: pointer;}
+.nutslide li{
+    list-style: none;
+float: left;
+    width: 15px;
+    height: 15px;
+    margin:10px;
+    background: gray;
+    border-radius: 50%;
+    text-indent: -9999px;
+    cursor: pointer;
+    transition: 0.4s;
+    border: 1px solid white
+}
+.nutslide li:hover{
+background: white;
+border: 1px solid red;
+}
+.nutslide{
+    width: 100%;
+    text-align: center;
+    height: 50px;
+
+}
+ul{
+    display: inline-block;
+    transform: translateY(-100px);
+}
+img{
+    background-size: cover;
+}
+.active{
+    opacity: 1;
+    visibility: visible;
+}
+.bien-mat-o-ben-trai{
+    animation: bienmatobentrai 1s forwards;
+    transform-origin: 0% 0%;
+}
+@keyframes bienmatobentrai{
+    0%{transform: rotateY(0deg);opacity: 1;visibility: visible}
+    100%{transform: rotateY(45deg);opacity: 0;visibility: hidden;}
+}
+.bien-mat-o-ben-phai{
+    animation: bienmatobenphai 1s forwards;
+    transform-origin: 100% 0%;
+}
+@keyframes bienmatobenphai{
+    0%{transform: rotateY(0deg);opacity: 1;visibility: visible}
+    100%{transform: rotateY(-45deg);opacity: 0;visibility: hidden;}
+}
+.divaotubenphai{
+    animation: divaotubenphai 1s forwards;
+animation-delay: 0.2s;
+}
+@keyframes divaotubenphai{
+    0%{left: 100%;opacity: 0;visibility: hidden;}
+    100%{left: 0%;opacity: 1;visibility: visible}
+}
+.divaotubentrai{
+    animation: divaotubentrai 1s forwards;
+
+}
+@keyframes divaotubentrai{
+    0%{left: -100%;opacity: 0;visibility: hidden;}
+    100%{left: 0%;opacity: 1;visibility: visible}
+}
+ul .xanh{
+    background: white;
+    border: 1px solid red;
+
+}
+img.anh {
+    width: 50px;
+    height: 94px;
+transform: translateY(-60px)
+}

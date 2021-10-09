@@ -1,0 +1,256 @@
+package Game;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
+import javax.swing.event.AncestorListener;
+
+public class GameLatHinh extends JFrame implements ActionListener {
+	int count = 0, id, preX, preY, X, Y;
+	int level = 0, hit = 0;
+	// chieu doc
+	int sizeX[] = { 2, 2, 2, 3, 4, 4, 4, 4, 5, 5 };
+	// chieu ngang
+	int sizeY[] = { 3, 4, 6, 6, 6, 7, 8, 10, 10, 12 };
+
+	int TIME[] = { 10, 20, 30, 50, 65, 80, 100, 120, 140, 150 }; // mànt 1 kết thúc sau 10 giây
+
+	int maxTime = 50, time = 0;
+	int m = sizeX[0], n = sizeY[0];
+	// progressbar
+	private JProgressBar progressTime;
+	// nut
+	private JButton bt[][] = new JButton[100][100];
+	// kick
+	private boolean tick[][] = new boolean[100][100];
+
+	// hinh anh
+	private int a[][] = new int[100][100];
+	private JButton score_bt;
+	private JPanel pn, pn2;
+	Container cn;
+	Timer timer, timer2;
+
+	public GameLatHinh(int k, int score) {
+
+		this.setTitle("Trúc Xanh - Game");
+		// level k
+		level = k;
+
+		cn = init(k, score);
+		// thoi gian lat va check hinh anh thu nhat khi lat hinh anh thu hai
+		timer = new Timer(250, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// khi thuc hien hanh dong nay timer se tu dong bat
+				open();
+				// khi het 250/1000 giay thi phuong thuc open se khong duoc thuc thi nua timer
+				// bi dong lai
+				timer.stop();
+			}
+		});
+		// thoi gian chay cua progressBar
+		timer2 = new Timer(100, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// sau 100/1000 giay thi bien time se tang len 1 don vi
+				time++;
+				// set value cho progressBar
+				// no se chay giam dan den khi maxTime cua man do tru di time tang theo thoi
+				// gian = 0
+				progressTime.setValue(maxTime - time);
+				// khi time tang len theo thoi gian bang maxTime thi se cho time2 dung lai
+				if (maxTime == time || Integer.parseInt(score_bt.getText()) <= 0) {
+					// timer2 bi dung lai
+					timer2.stop();
+					// goi phuong thuc showDialogNewGame() de hien thi thong bao
+					showDialogNewGame(
+							"bạn đã thua.\n" + "Điểm: " + score_bt.getText() + "\n" + "Bạn có muốn chơi lại không?",
+							"Thông báo");
+
+				}
+
+			}
+		});
+	}
+
+	// phuong thuc lat the
+	public void open() {
+//		System.out.println(preX);
+		System.out.println(X);
+		if (id == a[X][Y]) {
+			bt[preX][preY].setIcon(getIcon(80));
+			a[X][Y] = a[preX][preY] = 0;
+			tick[X][Y] = tick[preX][preY] = false;
+
+			bt[X][Y].setBorder(null);
+			bt[preX][preY].setBorder(null);
+			bt[X][Y].setIcon(getIcon(80));
+			score_bt.setText(String.valueOf(Integer.parseInt(score_bt.getText()) + 10));
+			hit++;
+			if (hit == m * n / 2) {
+
+				timer.stop();
+				timer2.stop();
+				nextGame();
+			}
+		} else {
+			bt[preX][preY].setIcon(getIcon(0));
+			bt[X][Y].setIcon(getIcon(0));
+			tick[preX][preY] = true;
+			tick[X][Y] = true;
+			score_bt.setText(String.valueOf(Integer.parseInt(score_bt.getText()) - 20));
+		}
+	}
+
+// container chua jframe
+	// component chua container
+	public Container init(int k, int score) {
+
+		m = sizeX[k];
+		n = sizeY[k];
+		maxTime = TIME[k] * 10;
+		time = 0;
+		Container cn = this.getContentPane();
+		pn = new JPanel();
+		pn.setLayout(new GridLayout(m, n));
+//		JLabel lblImage = new JLabel("");
+//
+//		lblImage.setIcon(new ImageIcon(
+//				new ImageIcon("./src/Game/icon100.jpg").getImage().getScaledInstance(120, 270, Image.SCALE_SMOOTH)));
+//		lblImage.setOpaque(true);
+//		pn.add(lblImage);
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				bt[i][j] = new JButton();
+				bt[i][j].setFocusable(false);
+				pn.add(bt[i][j]);
+//				bt[i][j].setBackground(null);
+
+				// set actionCommand cho all nut voi vi tri hien tai cua nut do
+				bt[i][j].setActionCommand(i + "" + j);
+				// add action click vao cho all nut
+				bt[i][j].addActionListener(this);
+				// set background cho all nut
+				bt[i][j].setBackground(Color.black);
+
+				// random so nguyen tu 1 toi 50 cho mang 2 chieu a
+				a[i][j] = (int) (Math.random() * 90);
+				bt[i][j].setIcon(getIcon(0));
+				tick[i][j] = true;
+			}
+		}
+
+		pn2 = new JPanel();
+		pn2.setLayout(new FlowLayout());
+		score_bt = new JButton(String.valueOf(score));
+		score_bt.setFont(new Font("UTM Nokia", 1, 20));
+		score_bt.setBackground(Color.white);
+		score_bt.setFocusable(false);
+		JLabel score_lb = new JLabel("Score: ");
+		score_lb.setFont(new Font("UTM Nokia", 1, 20));
+		pn2.add(score_lb);
+		pn2.add(score_bt);
+
+		progressTime = new JProgressBar(0, maxTime);
+		progressTime.setValue(maxTime);
+		progressTime.setForeground(Color.red);
+
+		cn.add(pn);
+		cn.add(progressTime, "North");
+		cn.add(pn2, "South");
+		this.setVisible(true);
+		this.setSize(n * 130, m * 170 + +110);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		setResizable(false);
+		return cn;
+	}
+
+	// lay hinh ra
+	// lay icon thu n ra // chi dc 1 icon
+	private Icon getIcon(int index) {
+		Image image = new ImageIcon(getClass().getResource("/Game/icon/icon" + index + ".png")).getImage();
+		Icon icon = new ImageIcon(image.getScaledInstance(120, 170, image.SCALE_SMOOTH));
+		return icon;
+	}
+
+	// bat dau choi game
+	// goi class main ra // class jframe
+	public void newGame() {
+
+		this.dispose();
+		new GameLatHinh(0, 50);
+	}
+
+	// nextgame auto
+	public void nextGame() {
+		this.dispose();// clear man hinh
+		// reset class
+		new GameLatHinh(level + 1, (level + 10) * 10);
+	}
+
+	// thong bao khi lose game
+	public void showDialogNewGame(String message, String title) {
+		int select = JOptionPane.showOptionDialog(null, message, title, JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, null, null);
+		if (select == 0) {// bat dau lai
+			newGame();
+		} else {// exit game
+			System.exit(0);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// click vao hinh thoi gian bat dau chay
+		timer2.start();
+
+		int i, j;
+		// lay string khi setActionCommand
+		String s = e.getActionCommand();
+
+		i = Integer.parseInt(s.substring(0, 1));
+		j = Integer.parseInt(s.substring(1, s.length()));
+		bt[i][j].setIcon(getIcon(a[i][j]));
+		if (tick[i][j]) {// kiem tra click chua
+			// cho phep click hinh do 1 lan
+			tick[i][j] = false;
+			// hinh dau tien
+			if (count == 0) {
+				// gan vi tri nut do cho id
+				id = a[i][j];
+
+				preX = i;
+				preY = j;
+				// hinh thu 2
+			} else {
+
+				X = i;
+				Y = j;
+				// set thoi gian up lai
+				timer.start();
+			}
+			// tro ve hinh anh dau tien
+			count = 1 - count;
+		}
+	}
+
+	public static void main(String[] args) {
+		new GameLatHinh(0, 500);
+	}
+}

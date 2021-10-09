@@ -1,0 +1,29 @@
+*{margin: 0;padding: 0;}
+.gra{
+    width: 900px;
+    height: 75px;
+   background-image: -webkit-linear-gradient(top, #ffffff00 0%, #ffffffd9 50%, #ffffff00 100%);
+    transform: rotate(-45deg);
+    transition: 0.9s;
+    top: -100px;
+    left: -600px;
+    position: absolute;
+}
+.bo{
+    top: 200px;
+    margin: auto;
+    position: relative;
+    width: 500px;
+    height: 400px;
+    background-image: url(https://traicayvuongtron.vn/resources/uploads/top-5-quan-trai-cay-dam_7.jpg);
+    background-size: cover;
+    overflow: hidden;
+
+}
+.bo:hover .gra{
+    top: 428px;
+    left: 197px;
+}
+body{
+    background-color: black;
+}

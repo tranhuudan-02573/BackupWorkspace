@@ -1,0 +1,34 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+ .giaodien{
+     width: 900px;
+     height: auto;
+     margin: auto;
+     display: flex;
+     flex-wrap: wrap;
+ }
+ .khoi {
+     width: 260px;
+     height: 500px;
+     margin: 20px;
+     text-align: center;
+    
+ }
+ .khoi a {
+     color: black;
+     font-family: segoe ui light;
+     text-decoration: none;
+    font-size: 21px;
+    
+}
+.khoitext{
+    font-family: segoe ui light;
+    font-size: 18px;
+    color: gray;
+    width: 1400px;
+    margin: auto;
+}
+img{
+    width: 300px;
+    height: auto;
+    padding: 10px;
+}

@@ -1,0 +1,72 @@
+1616391615199	Rename field 'display'
+1616391618916	Rename field 'jbt'
+1616391625177	Rename field 'jbtName'
+1616391685734	Rename local variable 'ae'
+1616395795340	Rename field 'num1'
+1616395799319	Rename field 'num2'
+1616470515686	Delete element
+1616470558663	Rename type '_1'
+1616496425611	Rename type 'snake'
+1616496430136	Rename type 'Gamesnake'
+1616499563704	Rename type 'GamePannel'
+1616499801845	Delete element
+1616560585404	Rename local variable 'metrics2'
+1616570443125	Delete element
+1616658392833	Rename field 'appleX'
+1616658400105	Rename field 'appleY'
+1616660686622	Rename method 'newApple'
+1616662441849	Rename method 'newAppleSmall'
+1616678298485	Delete element
+1616737400510	Delete element
+1616741384538	Rename package 'bai1'
+1616741389923	Rename package 'bai2'
+1616741396330	Rename package 'bai3'
+1616741400220	Rename package 'bai4'
+1616741405371	Rename package 'bai5'
+1616741414885	Rename package 'bai6'
+1616741423275	Rename package 'bai7'
+1616741433009	Rename package 'bai8'
+1616741440636	Rename package 'bai9'
+1616742834263	Rename package 'image'
+1616742853779	Rename resource '7a953aa5e6e55d4d4adea2ca74ff6eda.jpg'
+1616748391728	Rename package 'TrucXanhGame'
+1616759959233	Delete element
+1616759960705	Delete element
+1616759962013	Delete element
+1616759962757	Delete element
+1616759964063	Delete element
+1616760060905	Delete element
+1616760242252	Delete element
+1616760252734	Delete elements
+1616763079200	Rename resource 'images.png'
+1616763084003	Rename resource 'unnamed.png'
+1616763207489	Delete element
+1616763208482	Delete element
+1616763211727	Rename resource 'images.png'
+1616763214961	Rename resource 'unnamed.png'
+1616764120014	Delete element
+1616764121358	Delete element
+1616764125847	Rename resource 'pngtree-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2346256.jpg'
+1616764128916	Rename resource 'pngtree-red-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2346437.jpg'
+1616764131014	Rename resource 'pngtree-yellow-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2347013.jpg'
+1616764134269	Rename resource '-3.jpg'
+1616764470784	Delete element
+1616764471703	Delete element
+1616764472478	Delete element
+1616764475328	Rename resource 'pngtree-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2346256.jpg'
+1616764479259	Rename resource 'pngtree-red-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2346437.jpg'
+1616764482612	Rename resource 'pngtree-yellow-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2347013.jpg'
+1616764688240	Delete element
+1616764691279	Rename resource 'blue.jpg'
+1616765023660	Rename resource 'pngtree-red-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2346437.jpg'
+1616765170106	Rename resource 'pngtree-red-glossy-button-2d-and-3d-buttons-for-mobile-game-ui-png-image_2346437.jpg'
+1616765200068	Delete element
+1616765200829	Delete element
+1616765523200	Delete element
+1616765524016	Delete element
+1616765524693	Delete element
+1616808395791	Rename compilation unit 'Game.java'
+1616810205839	Delete element
+1616830876076	Move file
+1616836885792	Rename package 'images'
+1616836906553	Rename package 'images.icon'

@@ -1,0 +1,7 @@
+module CTDL {
+	exports exercises1;
+	exports task1;
+	exports task2;
+	exports task3;
+	exports task4;
+}
